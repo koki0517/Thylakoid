@@ -2,10 +2,11 @@
 #include "avr/pgmspace.h"
 #include <Arduino.h>
 #include <Wire.h>
+#include <SPI.h>
 
 #include "BNO055.h"
-#include "SSD1306.h"
 #include "VL53L5CX.h"
+#include "ILI9341.h"
 
 BNO055 gyro;
 SSD1306 display;
