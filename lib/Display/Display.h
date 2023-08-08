@@ -3,13 +3,15 @@
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
 #include <Arduino.h>
+#include <SPI.h>
+#include <EEPROM.h>
 
-extern int16_t libar[64*3];
-
-class VL53L5CX {
+class Display {
 public:
-  VL53L5CX();
+  ILI9341();
   bool init();
-  void get_lidar();
-  bool stop();
+  void clear();
+  void home();
+
+private:
 };

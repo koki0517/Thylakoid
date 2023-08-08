@@ -4,13 +4,15 @@
 #include <Wire.h>
 #include <SPI.h>
 
-#include "BNO055.h"
+#include "Gyro.h"
 #include "VL53L5CX.h"
-#include "ILI9341.h"
+#include "Display.h"
+#include "ColorSensor.h"
 
-BNO055 gyro;
-SSD1306 display;
+Gyro gyro;
+Display display;
 VL53L5CX lidar;
+ColorSensor color;
 
 int8_t refrector_pin[] = {}; // 最低でも4個いるよね
 
