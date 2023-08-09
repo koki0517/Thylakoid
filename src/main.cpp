@@ -17,11 +17,13 @@ ColorSensor color;
 int8_t refrector_pin[] = {}; // 最低でも4個いるよね
 
 static void task1(void*) {
+  // メインタスク
   while (1) {
   }
 }
 
 static void task2(void*) {
+  // サブなタスク センサの処理など
   while (1) {
   }
 }

@@ -8,7 +8,8 @@
 
 class Gyro {
 public:
-  Gyro();
   bool init();
-  void get_xyz(float* bno_x,float* bno_y,float* bno_z);
+  void get_xyz(float* gyroX,float* gyroY,float* gyroZ);
+  int8_t hill();
+  bool seesaw();
 };
