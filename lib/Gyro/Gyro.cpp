@@ -2,7 +2,12 @@
 
 ICM42688 IMU(SPI, 13); // SPI1 27
 
-bool Gyro::init(){
+void Gyro::updateEEPROM(){
+  EEPROM.get(EEPADDR_STARTINGTILT, startingTilt);
+}
+
+int Gyro::init(){
+  updateEEPROM();
   // start communication with IMU
   return IMU.begin();
 }
@@ -29,12 +34,12 @@ int8_t Gyro::hill(){
   // Note: 基板で実装する向きが決まらんことにはXYを判断できへん 加速度を使えば「登り始め」「下り始め」をより早く感知できるかも?
 }
 
-bool seasaw(){
+bool Gyro::seasaw(){
   /* シーソーの傾き始める瞬間を加速度を用いて感知するよ
    * true -> シーソーが傾いた(加速度が大きい)
    * false -> まだ登り坂(加速度が小さい)
   */
-  float startingTilt = 10; // 機体の重量とかシーソーそのものによって変わってくる 当日の調整必須 UIで設定できたら最高
+
   float accX = IMU.accX();
   if (abs(accX) > startingTilt){
     return true;

@@ -9,7 +9,8 @@
 // float 4 byte
 // double 8 byte
 
-const int16_t EEP_STARTINGTILT_START = 0;
-const int16_t EEP_STARTINGTILT_END = 3;
+const int16_t EEPADDR_STARTINGTILT = 0; // float from 0 to 3
 
-const int16_t 
+const int16_t EEPADDR_ = 4;
+
+const int16_t EEPADDR_;
