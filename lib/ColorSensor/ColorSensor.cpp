@@ -4,7 +4,9 @@ const int8_t LED_pin = 0;
 const int8_t SDA;
 const int8_t SCL;
 
-ColorSensor::init(uint8_t addr = 0x29, TwoWire *theWire = &Wire){
+// インスタンス関数でWireを定義しようね
+
+ColorSensor::init(TwoWire *theWire = &Wire, uint8_t addr = 0x29){
   pinMode(LED_pin,arduino::OUTPUT);
   digitalWrite(LED_pin,arduino::HIGH);
 }

@@ -2,20 +2,25 @@
 
 ICM42688 IMU(SPI, 13); // SPI1 27
 
+Madgwick MadgwickFilter;
+
+float gyrX, gyroY,gyrZ;
+
 void Gyro::updateEEPROM(){
   EEPROM.get(EEPADDR_STARTINGTILT, startingTilt);
 }
 
-int Gyro::init(){
+int Gyro::init(int Madgwickfrequency){
   updateEEPROM();
+  MadgwickFilter.begin(Madgwickfrequency);
   // start communication with IMU
   return IMU.begin();
 }
 
 void Gyro::get_xyz(float* gyroX,float* gyroY,float* gyroZ){
-  *gyroX = IMU.gyrX();
-  *gyroY = IMU.gyrY();
-  *gyroZ = IMU.gyrZ();
+  *gyroX = filteredGyroX;
+  *gyroY = filteredGyroY;
+  *gyroZ = filteredGyroZ;
 }
 
 int8_t Gyro::hill(){
@@ -25,10 +30,10 @@ int8_t Gyro::hill(){
    * 2 -> 下り
   */
 
-  float gyroX = IMU.gyrX();
-  if (gyroX >= 5){
+  float filteredGyroX = IMU.gyrX();
+  if (filteredGyroX >= 5){
     return 1;
-  } else if (gyroX <= 5){
+  } else if (filteredGyroX <= 5){
     return 2;
   } else return 0;
   // Note: 基板で実装する向きが決まらんことにはXYを判断できへん 加速度を使えば「登り始め」「下り始め」をより早く感知できるかも?
@@ -40,9 +45,24 @@ bool Gyro::seasaw(){
    * false -> まだ登り坂(加速度が小さい)
   */
 
-  float accX = IMU.accX();
   if (abs(accX) > startingTilt){
     return true;
   } else return false;
   // Note: 上前半に同じく
+}
+
+void Gyro::UpdateGyro(){
+  // 生の値を取得 内部である程度補正はされてるけどね
+  gyrX = IMU.gyrX();
+  gyrY = IMU.gyrY();
+  gyrZ = IMU.gyrZ();
+  accX = IMU.accX();
+  accY = IMU.accY();
+  accZ = IMU.accZ();
+
+  MadgwickFilter.updateIMU(gyrX, gyrY, gyrZ, accX, accY, accZ);
+
+  filteredGyroX = MadgwickFilter.getRoll();
+  filteredGyroY = MadgwickFilter.getPitch();
+  filteredGyroZ = MadgwickFilter.getYaw();
 }

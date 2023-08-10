@@ -1,3 +1,7 @@
+/* これはメインなプログラムだよ!
+ * FreeRTOSで動くよ！
+*/
+
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
 #include <Arduino.h>
@@ -14,10 +18,10 @@ Display display;
 VL53L5CX lidar;
 ColorSensor color;
 
-int8_t refrector_pin[] = {}; // 最低でも4個いるよね
+xSemaphoreHandle mutexGyro;
 
 static void task1(void*) {
-  // メインタスク
+  // メインタスク UIの処理もここでするよ
   while (1) {
   }
 }
@@ -25,25 +29,44 @@ static void task1(void*) {
 static void task2(void*) {
   // サブなタスク センサの処理など
   while (1) {
+    // ジャイロセンサ(ICM42688)の更新
+    xSemaphoreTake(mutexGyro, portMAX_DELAY );
+    gyro.UpdateGyro();
+    xSemaphoreGive(mutexGyro);
+    ::vTaskDelay(pdMS_TO_TICKS(1));
   }
 }
 
 FLASHMEM __attribute__((noinline)) void setup() {
   Serial.begin(115200);
 
-  if (!gyro.init()){
-    // BNO055が見つかんなかったYO 
+  if (gyro.init() < 0){
+    // ICM42688が見つかんなかったYO 
+    while (1){
+      Serial.println("I missed your gyro.");
+      ::vTaskDelay(pdMS_TO_TICKS(1000));
+    }
   }
 
   if (!display.init()){
     // SSD1306が見つかんなかったYO
+    while (1){
+      Serial.println("I missed your display.");
+      ::vTaskDelay(pdMS_TO_TICKS(1000));
+    }
   }
 
   if (!lidar.init()){
-    // xiaoが見つかんなかったYO
+    // RP2040-Zeroが見つかんなかったYO
+    while (1){
+      Serial.println("I missed your RP2040.");
+      ::vTaskDelay(pdMS_TO_TICKS(1000));
+    }
   }
 
   // RTOSの設定
+  mutexGyro = xSemaphoreCreateMutex();
+
   ::xTaskCreate(task1, "task1", 2048, nullptr, 2, nullptr);
   ::xTaskCreate(task2, "task2", 2048, nullptr, 2, nullptr);
   ::vTaskStartScheduler();
