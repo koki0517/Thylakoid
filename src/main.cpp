@@ -1,5 +1,6 @@
-/* これはメインなプログラムだよ!
- * FreeRTOSで動くよ！
+/* 
+  これはメインなプログラムだよ!
+  FreeRTOSで動くよ！
 */
 
 #include "arduino_freertos.h"
@@ -18,7 +19,7 @@ Display display;
 VL53L5CX lidar;
 ColorSensor color;
 
-xSemaphoreHandle mutexGyro;
+::xSemaphoreHandle mutexGyro;
 
 static void task1(void*) {
   // メインタスク UIの処理もここでするよ
@@ -30,9 +31,9 @@ static void task2(void*) {
   // サブなタスク センサの処理など
   while (1) {
     // ジャイロセンサ(ICM42688)の更新
-    xSemaphoreTake(mutexGyro, portMAX_DELAY );
+    ::xSemaphoreTake(mutexGyro, portMAX_DELAY );
     gyro.UpdateGyro();
-    xSemaphoreGive(mutexGyro);
+    ::xSemaphoreGive(mutexGyro);
     ::vTaskDelay(pdMS_TO_TICKS(1));
   }
 }
@@ -65,10 +66,10 @@ FLASHMEM __attribute__((noinline)) void setup() {
   }
 
   // RTOSの設定
-  mutexGyro = xSemaphoreCreateMutex();
+  ::mutexGyro = xSemaphoreCreateMutex();
 
-  ::xTaskCreate(task1, "task1", 2048, nullptr, 2, nullptr);
-  ::xTaskCreate(task2, "task2", 2048, nullptr, 2, nullptr);
+  ::xTaskCreate(task1, "task1", 8192, nullptr, 2, nullptr);
+  ::xTaskCreate(task2, "task2", 8192, nullptr, 2, nullptr);
   ::vTaskStartScheduler();
 }
 

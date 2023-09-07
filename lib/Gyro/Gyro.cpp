@@ -4,8 +4,6 @@ ICM42688 IMU(SPI, 13); // SPI1 27
 
 Madgwick MadgwickFilter;
 
-float gyrX, gyroY,gyrZ;
-
 void Gyro::updateEEPROM(){
   EEPROM.get(EEPADDR_STARTINGTILT, startingTilt);
 }
@@ -21,6 +19,15 @@ void Gyro::get_xyz(float* gyroX,float* gyroY,float* gyroZ){
   *gyroX = filteredGyroX;
   *gyroY = filteredGyroY;
   *gyroZ = filteredGyroZ;
+}
+
+void Gyro::get_raw(float* rawGyroX,float* rawGyroY,float* rawGyroZ, float* rawAccX,float* rawAccY,float* rawAccZ){
+  *rawGyroX = gyrX;
+  *rawGyroY = gyrY;
+  *rawGyroZ = gyrZ;
+  *rawAccX = accX;
+  *rawAccY = accY;
+  *rawAccZ = accZ;
 }
 
 int8_t Gyro::hill(){
