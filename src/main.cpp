@@ -18,7 +18,8 @@
 Gyro gyro;
 Display display;
 PiZero2W lidar;
-ColorSensor color;
+ColorSensor colorLeft(Wire);
+ColorSensor colorRight(Wire1);
 Voice voice;
 
 ::xSemaphoreHandle mutexGyro;
@@ -60,7 +61,7 @@ FLASHMEM __attribute__((noinline)) void setup() {
   if (!display.init()){
     // ディスプレイが見つかんなかったYO
     while (1){
-      // voice.play(0); //1の場合実装してないやんけ
+      // voice.play(ERROR_DISPLAY); //ERROR_TOUCHの場合実装してないやんけ
       Serial.println("I missed your display.");
       ::vTaskDelay(pdMS_TO_TICKS(1000));
     }
@@ -69,7 +70,7 @@ FLASHMEM __attribute__((noinline)) void setup() {
   if (gyro.init() < 0){
     // ICM42688が見つかんなかったYO 
     while (1){
-      // voice.play(2);
+      // voice.play(ERROR_GYRO);
       Serial.println("I missed your gyro.");
       ::vTaskDelay(pdMS_TO_TICKS(1000));
     }
@@ -78,8 +79,26 @@ FLASHMEM __attribute__((noinline)) void setup() {
   if (!lidar.init()){
     // ラズパイが見つかんなかったYO
     while (1){
-      // voice.play(3);
+      // voice.play(ERROR_RASPI);
       Serial.println("I missed your RP2040.");
+      ::vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+  }
+
+    if (!colorLeft.init()){
+    // ラズパイが見つかんなかったYO
+    while (1){
+      // voice.play(ERROR_COLOR);
+      Serial.println("I missed your Left Color Sensor.");
+      ::vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+  }
+
+    if (!colorRight.init()){
+    // ラズパイが見つかんなかったYO
+    while (1){
+      // voice.play(ERROR_COLOR);
+      Serial.println("I missed your Left Color Sensor.");
       ::vTaskDelay(pdMS_TO_TICKS(1000));
     }
   }

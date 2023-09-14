@@ -14,6 +14,7 @@ const ERROR_DISPLAY = 0;
 const ERROR_TOUCH = 1;
 const ERROR_GYRO = 2;
 const ERROR_RASPI = 3;
+const ERROR_COLOR = 4;
 
 class Voice {
 public:
