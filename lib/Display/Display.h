@@ -51,14 +51,13 @@ home/
 |   |   |-- Black
 |   |   |-- Hill
 |   |
-|   |-- Rescue/
-|   |   |-- LineTrace
+|   |-- Rescue
 |
 */
 
 class Display {
 public:
-  ILI9341();
+  Display();
   bool init();
   void clear();
   void home();

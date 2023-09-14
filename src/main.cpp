@@ -10,19 +10,21 @@
 #include <SPI.h>
 
 #include "Gyro.h"
-#include "VL53L5CX.h"
+#include "PiZero2W.h"
 #include "Display.h"
 #include "ColorSensor.h"
+#include "DFPlayer.h"
 
 Gyro gyro;
 Display display;
-VL53L5CX lidar;
+PiZero2W lidar;
 ColorSensor color;
+Voice voice;
 
 ::xSemaphoreHandle mutexGyro;
 
 static void task1(void*) {
-  // メインタスク UIの処理もここでするよ
+  // メインタスク
   while (1) {
   }
 }
@@ -38,11 +40,17 @@ static void task2(void*) {
   }
 }
 
+static void task3(void*) {
+  // UI系の処理
+  while (1) {
+  }
+}
+
 FLASHMEM __attribute__((noinline)) void setup() {
   Serial.begin(115200);
 
-  if (gyro.init() < 0){
-    // ICM42688が見つかんなかったYO 
+  if (!voice.init()){
+    // mp3プレイヤーが見つかんなかったYO
     while (1){
       Serial.println("I missed your gyro.");
       ::vTaskDelay(pdMS_TO_TICKS(1000));
@@ -50,16 +58,27 @@ FLASHMEM __attribute__((noinline)) void setup() {
   }
 
   if (!display.init()){
-    // SSD1306が見つかんなかったYO
+    // ディスプレイが見つかんなかったYO
     while (1){
+      // voice.play(0); //1の場合実装してないやんけ
       Serial.println("I missed your display.");
       ::vTaskDelay(pdMS_TO_TICKS(1000));
     }
   }
 
-  if (!lidar.init()){
-    // RP2040-Zeroが見つかんなかったYO
+  if (gyro.init() < 0){
+    // ICM42688が見つかんなかったYO 
     while (1){
+      // voice.play(2);
+      Serial.println("I missed your gyro.");
+      ::vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+  }
+
+  if (!lidar.init()){
+    // ラズパイが見つかんなかったYO
+    while (1){
+      // voice.play(3);
       Serial.println("I missed your RP2040.");
       ::vTaskDelay(pdMS_TO_TICKS(1000));
     }
@@ -70,6 +89,7 @@ FLASHMEM __attribute__((noinline)) void setup() {
 
   ::xTaskCreate(task1, "task1", 8192, nullptr, 2, nullptr);
   ::xTaskCreate(task2, "task2", 8192, nullptr, 2, nullptr);
+  ::xTaskCreate(task3, "task3", 8192, nullptr, 2, nullptr);
   ::vTaskStartScheduler();
 }
 

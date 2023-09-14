@@ -5,7 +5,7 @@ ICM42688 IMU(SPI, 13); // SPI1 27
 Madgwick MadgwickFilter;
 
 void Gyro::updateEEPROM(){
-  EEPROM.get(EEPADDR_STARTINGTILT, startingTilt);
+  EEPROM.get(EEP_STARTINGTILT, startingTilt);
 }
 
 int Gyro::init(int Madgwickfrequency){

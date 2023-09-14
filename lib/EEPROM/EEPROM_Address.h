@@ -9,8 +9,8 @@
 // float 4 byte
 // double 8 byte
 
-const int16_t EEPADDR_STARTINGTILT = 0; // float from 0 to 3
+const int16_t EEP_Kp = 0;
+const int16_t EEP_Ki = 4;
+const int16_t EEP_Kd = 8;
 
-const int16_t EEPADDR_ = 4;
-
-const int16_t EEPADDR_;
+const int16_t EEP_STARTINGTILT = 12; // float from 0 to 3

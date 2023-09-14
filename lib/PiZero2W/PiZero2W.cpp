@@ -1,18 +1,11 @@
-/* 基本的にRP2040が処理したVL53L5CXの値をUARTで受け取るだけ
- * 受信バッファのサイズは変えないつもり
- * おなかすいた
- */
-
 #include "VL53L5CX.h"
 
-extern int16_t libar[64*3];
-
-VL53L5CX::VL53L5CX(){
+PiZero2W::PiZero2W(){
   Serial1.begin(115200); // もっと上げてもいいかも?
   while (!Serial1); // シリアルの名前はちゃんと変えようね!Teensy君いっぱいシリアル持ってんだから
 }
 
-bool VL53L5CX::init(){
+bool PiZero2W::init(){
   while (Serial1.available())Serial1.read(); // 受信バッファのお掃除
   Serial1.write(0x01); // スタート信号
   bool result = true;
@@ -25,10 +18,10 @@ bool VL53L5CX::init(){
   return result;
 }
 
-bool VL53L5CX::stop(){
+bool PiZero2W::stop(){
   Serial1.write(0x04); // ストップ信号
 }
 
-void VL53L5CX::get_lidar(){
+void PiZero2W::get_lidar(){
   Serial1.read();
 }
