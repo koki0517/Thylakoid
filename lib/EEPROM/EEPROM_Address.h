@@ -27,3 +27,5 @@ const uint16_t EEP_SqturationRedMin = 24;
 const uint16_t EEP_ValueRedMin = 26;
 
 const int16_t EEP_STARTINGTILT = 28; // float from 0 to 3
+
+const int16_t EEP_FloorProtrusion = 32;

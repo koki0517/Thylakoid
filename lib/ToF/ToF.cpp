@@ -52,7 +52,7 @@ bool WallToF::init(){
     if (!VL53L1X[i].init())
     {
       success = false;
-      Serial.printf("Failed to detect and initialize %u VL53L1X\n",i);
+      // Serial.printf("Failed to detect and initialize %u VL53L1X\n",i);
     }
     VL53L1X[i].setAddress(FirstAddress_VL1 + i);
 
@@ -63,6 +63,19 @@ bool WallToF::init(){
   }
 
   return success;
+}
+
+uint16_t WallToF::read(uint8_t sensor_number){
+  for (int i = 0; i < numToF_VL0; i++) {
+    if (XSHUT_WALL_VL0[i] == sensor_number) {
+      uint16_t vl_mm = VL53L0X[i].readRangeContinuousMillimeters();
+      if (VL53L0X[1].timeoutOccurred()) init();
+      return vl_mm;
+    }
+  }
+  uint16_t vl_mm = VL53L1X[i].read();
+  if (VL53L1X[i].timeoutOccurred()) init();
+  return vl_mm;
 }
 
 /*床を見るセンサーたち------------------------------------------------------------------*/
@@ -76,6 +89,7 @@ FloorToF::FloorToF(){
 }
 
 bool FloorToF::init(){
+  updateEEPROM();
   /*どのセンサーがエラーを起こしたかを返せたらいいなー*/
   bool success = true;
   // 全てのToFを初期化
@@ -85,7 +99,7 @@ bool FloorToF::init(){
     VL53L0X[i].setTimeout(500);
     if (!VL53L0X[i].init()){
       success = false;
-      Serial.printf("Failed to detect and initialize %u VL6180X\n",i);
+      // Serial.printf("Failed to detect and initialize %u VL6180X\n",i);
     }
     VL53L0X[i].setAddress(FirstAddress + i);
 
@@ -101,4 +115,18 @@ bool FloorToF::init(){
     VL53L0X[i].startContinuous(10);
   }
   return success;
+}
+
+uint16_t FlooorToF::read(uint8_t sensor_number){
+  uint16_t vl_mm = VL53L0X[sensor_number].readRangeContinuousMillimeters();
+  if (VL53L0X[sensor_number].timeoutOccurred()) init();
+  return vl_mm;
+}
+
+bool FlooorToF::findProtrusion(uint8_t sensor_number){
+  return (FloorProtrusion <= read(sensor_number))
+}
+
+void FlooorToF::updateEEPROM(){
+  EEPROM.get(EEP_FloorProtrusion, FloorProtrusion);
 }

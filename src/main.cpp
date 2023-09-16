@@ -25,13 +25,18 @@ Voice voice;
 ::xSemaphoreHandle mutexGyro;
 
 static void task1(void*) {
-  // メインタスク
+  /*メインタスク
+  制御周期短めで動いてほしい
+  */
   while (1) {
   }
 }
 
 static void task2(void*) {
-  // サブなタスク センサの処理など
+  /*サブなタスク
+  一定の制御周期を保証したいジャイロのためにある
+  I2C系のセンサも処理する
+  */
   while (1) {
     // ジャイロセンサ(ICM42688)の更新
     ::xSemaphoreTake(mutexGyro, portMAX_DELAY );
@@ -42,7 +47,9 @@ static void task2(void*) {
 }
 
 static void task3(void*) {
-  // UI系の処理
+  /*UI系の処理
+  所詮UIなので30Hzとかでも問題ない
+  */
   while (1) {
   }
 }
