@@ -110,6 +110,7 @@ FLASHMEM __attribute__((noinline)) void setup() {
   ::xTaskCreate(task2, "task2", 8192, nullptr, 2, nullptr);
   ::xTaskCreate(task3, "task3", 8192, nullptr, 2, nullptr);
   ::vTaskStartScheduler();
+  // ここの下には何も書くな!!
 }
 
 void loop(){} // nothing to do is here
