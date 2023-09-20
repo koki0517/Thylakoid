@@ -17,4 +17,4 @@ public:
 private:
   uint8_t pins[] = {24,25};
   int isPressed;
-}
+};

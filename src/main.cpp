@@ -14,6 +14,8 @@
 #include "Display.h"
 #include "ColorSensor.h"
 #include "DFPlayer.h"
+#include "ToF.h"
+#include "LoadCell.h"
 
 Gyro gyro;
 Display display;
@@ -23,6 +25,7 @@ ColorSensor colorRight(&Wire1);
 Voice voice;
 WallToF walltof(&Wire1);
 FloorToF floortof(&Wire);
+LoadCell loadcell; // initはない
 
 ::xSemaphoreHandle mutexGyro;
 
