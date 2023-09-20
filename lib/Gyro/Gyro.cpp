@@ -1,6 +1,6 @@
 #include "Gyro.h"
 
-ICM42688 IMU(SPI, 13); // SPI1 27
+ICM42688 IMU(SPI1, 13); // SPI1 27
 
 Madgwick MadgwickFilter;
 

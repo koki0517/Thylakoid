@@ -4,7 +4,7 @@
 #include "avr/pgmspace.h"
 #include <Arduino.h>
 #include <SPI.h>
-#include <EEPROM.h>
+#include "../EEPROM/EEPROM_Address.h"
 
 /* UI階層
 home/

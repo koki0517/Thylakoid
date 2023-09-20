@@ -15,6 +15,8 @@ const ERROR_TOUCH = 1;
 const ERROR_GYRO = 2;
 const ERROR_RASPI = 3;
 const ERROR_COLOR = 4;
+const ERROR_WALL_TOF = 5;
+const ERROR_FLOOR_TOF = 6;
 
 class Voice {
 public:

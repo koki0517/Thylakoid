@@ -5,7 +5,6 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_TCS34725.h>
-#include <EEPROM.h>
 #include "../EEPROM/EEPROM_Address.h"
 
 // 判断する色
@@ -22,6 +21,8 @@ public:
   void updateEEPROM();
   uint8_t color(); // HSVベースで判断
 private:
+  Adafruit_TCS34725 color;
+  TwoWire *theWire;
   // 緑を緑たらしめるHSVの条件
   const uint16_t HueGreenMin, HueGreenMax, SqturationGreenMin, ValueGreenMin;
 

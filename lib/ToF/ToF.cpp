@@ -1,12 +1,17 @@
 #include <ToF.h>
 
 /*壁を見るセンサーたち---------------------------------------------------*/
+WallToF::WallToF(TwoWire *theWire){
+  this->theWire = theWire;
+  VL53L0X VL53L0X[numToF_VL0];
+  VL53L1X VL53L1X[numToF_VL1];
+}
+
 bool WallToF::init(){
   /*どのセンサーがエラーを起こしたかを返せたらいいなー*/
   bool success = true;
 
   /*VL53L0X*/
-  VL53L0X VL53L0X[numToF_VL0];
   // すべてのVL53L0Xをオフにする
   for (uint8_t i = 0; i < numToF_VL0; i++) {
     pinMode(XSHUT_WALL_VL0[i],OUTPUT);
@@ -17,12 +22,13 @@ bool WallToF::init(){
   for (uint8_t i = 0; i < numToF_VL0; i++) {
     digitalWrite(XSHUT_WALL_VL0[i], HIGH);
     delay(1);
+    VL53L0X[i].setBus(*theWire);
+    VL53L0X[i].setAddress(FirstAddress_VL0 + i);
     VL53L0X[i].setTimeout(500);
     if (!VL53L0X[i].init()){
       success = false;
       Serial.printf("Failed to detect and initialize %u VL53L0XX\n",i);
     }
-    VL53L0X[i].setAddress(FirstAddress_VL0 + i);
 
     // 射程を広げる
     VL53L0X[i].setSignalRateLimit(0.1);
@@ -37,7 +43,6 @@ bool WallToF::init(){
   }
   /*VL53L1X--------------------------------------------------------------------------*/
   // すべてのVL53L1Xをオフにする
-  VL53L1X VL53L1X[numToF_VL1]
   for (uint8_t i = 0; i < numToF_VL1; i++) {
     pinMode(XSHUT_WALL_VL1[i],OUTPUT);
     digitalWrite(XSHUT_WALL_VL1[i], LOW);
@@ -80,9 +85,11 @@ uint16_t WallToF::read(uint8_t sensor_number){
 
 /*床を見るセンサーたち------------------------------------------------------------------*/
 
-FloorToF::FloorToF(){
+FloorToF(TwoWire *theWire){
+  VL53L0X VL53L0X[numToF];
+  this->theWire = theWire;
   // すべてのToFをオフにする
-  for (i = 0; i < (sizeof(XSHUT_FLOOOR)/sizeof(uint8_t)) - 1; i++) {
+  for (int i = 0; i < numToF; i++) {
     pinMode(XSHUT_FLOOOR[i],OUTPUT);
     digitalWrite(XSHUT_FLOOOR[i], LOW);
   }
@@ -117,16 +124,17 @@ bool FloorToF::init(){
   return success;
 }
 
-uint16_t FlooorToF::read(uint8_t sensor_number){
+uint16_t FloorToF::read(uint8_t sensor_number){
   uint16_t vl_mm = VL53L0X[sensor_number].readRangeContinuousMillimeters();
   if (VL53L0X[sensor_number].timeoutOccurred()) init();
   return vl_mm;
 }
 
-bool FlooorToF::findProtrusion(uint8_t sensor_number){
-  return (FloorProtrusion <= read(sensor_number))
+bool FloorToF::findProtrusion(uint8_t sensor_number){
+  bool success = FloorProtrusion <= read(sensor_number);
+  return success;
 }
 
-void FlooorToF::updateEEPROM(){
+void FloorToF::updateEEPROM(){
   EEPROM.get(EEP_FloorProtrusion, FloorProtrusion);
 }

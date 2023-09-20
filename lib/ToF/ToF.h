@@ -5,7 +5,6 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <VL53L0X.h>
-#include <EEPROM.h>
 #include "../EEPROM/EEPROM_Address.h"
 
 /*数多のToFセンサをまとめるクラス
@@ -28,9 +27,13 @@ const uint8_t ToF_BACK_RIGHT = 4;
 
 class WallToF {
 public:
+  WallToF(TwoWire *theWire = &Wire);
   bool init(); // タイムアウトでセンサを再起動するときもこれを使う
   uint16_t read(uint8_t sensor_number);
 private:
+  TwoWire *theWire;
+  VL53L0X VL53L0X;
+  VL53L1X VL53L1X;
   const char FirstAddress_VL1 = 0x30; 
   uint8_t XSHUT_WALL_VL1[] = {5,6};
   uint8_t numToF_VL1 = sizeof(XSHUT_WALL)/sizeof(uint8_t);
@@ -42,13 +45,17 @@ private:
 // センサーの通し番号
 const ToF_FLOOR_LEFT = 9;
 const ToF_FLOOR_RIGHT = 10;
+
 class FloorToF {
 public:
+  FloorToF(TwoWire *theWire = &Wire);
   bool init();
   uint16_t read(uint8_t sensor_number);
   bool findProtrusion(uint8_t sensor_number);
   void updateEEPROM();
 private:
+  VL53L0X VL53L0X;
+  TwoWire *theWire;
   const char FirstAddress = 0x01;
   uint8_t XSHUT_FLOOR[] = {9,10};
   uint8_t numToF = sizeof(XSHUT_FLOOR)/sizeof(uint8_t);

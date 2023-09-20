@@ -18,9 +18,11 @@
 Gyro gyro;
 Display display;
 PiZero2W lidar;
-ColorSensor colorLeft(Wire);
-ColorSensor colorRight(Wire1);
+ColorSensor colorLeft(&Wire);
+ColorSensor colorRight(&Wire1);
 Voice voice;
+WallToF walltof(&Wire1);
+FloorToF floortof(&Wire);
 
 ::xSemaphoreHandle mutexGyro;
 
@@ -74,7 +76,7 @@ FLASHMEM __attribute__((noinline)) void setup() {
     }
   }
 
-  if (gyro.init() < 0){
+  if (gyro.init(/*サンプリングレート*/1000) < 0){
     // ICM42688が見つかんなかったYO 
     while (1){
       // voice.play(ERROR_GYRO);
@@ -92,7 +94,25 @@ FLASHMEM __attribute__((noinline)) void setup() {
     }
   }
 
-    if (!colorLeft.init()){
+  if (!walltof.init()){
+    // 壁を監視するToFのどれかが見つかんなかったYO
+    while (1){
+      // voice.play(ERROR_WALL_TOF);
+      Serial.println("I missed your Wall ToF.");
+      ::vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+  }
+
+  if (!floortof.init()){
+    // 床を監視するToFのどれかが見つかんなかったYO
+    while (1){
+      // voice.play(ERROR_FLOOR_TOF);
+      Serial.println("I missed your Floor ToF.");
+      ::vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+  }
+
+  if (!colorLeft.init()){
     // ラズパイが見つかんなかったYO
     while (1){
       // voice.play(ERROR_COLOR);
@@ -101,7 +121,7 @@ FLASHMEM __attribute__((noinline)) void setup() {
     }
   }
 
-    if (!colorRight.init()){
+  if (!colorRight.init()){
     // ラズパイが見つかんなかったYO
     while (1){
       // voice.play(ERROR_COLOR);

@@ -14,7 +14,6 @@
 #include <SPI.h>
 #include <ICM42688.h>
 #include <MadgwickAHRS.h>
-#include <EEPROM.h>
 #include "../EEPROM/EEPROM_Address.h"
 
 class Gyro {

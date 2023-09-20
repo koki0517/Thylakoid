@@ -6,9 +6,7 @@ const int8_t SCL;
 
 // インスタンス関数でWireを定義しようね
 
-ColorSensor::ColorSensor(TwoWire *theWire = &Wire){
-  Adafruit_TCS34725 color = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X);
-}
+ColorSensor::ColorSensor(TwoWire *theWire) : theWire(theWire), color(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X) {}
 
 bool ColorSensor::init(){
   updateEEPROM();
@@ -23,7 +21,7 @@ void ColorSensor::rgb(uint16_t* red,uint16_t* green,uint16_t* blue){
   *blue = b;
 }
 
-void ColorSensor::hsv(uint16_t* h,uint16_t* s,uint16_t* v){
+void ColorSensor::hsv(uint16_t *h,uint16_t *s,uint16_t *v){
   uint16_t r, g, b, c;
   color.getRawData(&r, &g, &b, &c);
   
