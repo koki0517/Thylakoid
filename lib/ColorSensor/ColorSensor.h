@@ -8,9 +8,9 @@
 #include "../EEPROM/EEPROM_Address.h"
 
 // 判断する色
-const OTHERS = 0; // 緑でも赤でもない
-const GREEN = 1; // 緑色
-const RED = 2; // 赤色
+const uint8_t OTHERS = 0; // 緑でも赤でもない
+const uint8_t GREEN = 1; // 緑色
+const uint8_t RED = 2; // 赤色
 
 class ColorSensor {
 public:

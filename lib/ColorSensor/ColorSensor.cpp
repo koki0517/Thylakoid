@@ -1,12 +1,6 @@
 #include "ColorSensor.h"
 
-const int8_t LED_pin = 0;
-const int8_t SDA;
-const int8_t SCL;
-
-// インスタンス関数でWireを定義しようね
-
-ColorSensor::ColorSensor(TwoWire *theWire) : theWire(theWire), color(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X) {}
+ColorSensor::ColorSensor(TwoWire *theWire) : theWire(theWire), color(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X){}
 
 bool ColorSensor::init(){
   updateEEPROM();
@@ -39,7 +33,7 @@ void ColorSensor::hsv(uint16_t *h,uint16_t *s,uint16_t *v){
   } else if (maxRGB == b){
     *h = 60 * ((r - g) / diff)
   }
-  if (hue < 0) *h += 360;
+  if (*h < 0) *h += 360;
 
   // Sqturation
   if (maxRGB == 0){
@@ -56,10 +50,10 @@ uint8_t ColorSensor::color(){
   uint16_t h, s, v;
   hsv(&h, &s, &v);
   if (HueGreenMin < h && h < HueGreenMax && s > SqturationGreenMin && v > ValueGreenMin){
-    return 1;
+    return GREEN;
   } else if (HueRedMin < h && h < HueRedMax && s > SqturationRedMin && v > ValueRedMin){
-    return 2;
-  } else return 0;
+    return RED;
+  } else return OTHERS;
 }
 
 void ColorSensor::updateEEPROM(){
