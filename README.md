@@ -1,3 +1,6 @@
+# 構想
+これから作っていくものの大まかな構想
+
 # Abstract
 I cannot join RCJJ2024 due to studying for the entrance exam.  
 And I cannot join RCJJ 2025 because my birthday is in April.  
