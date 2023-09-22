@@ -1,3 +1,12 @@
+# ポスター
+作成ツール: Draw.io
+
+## 最も簡単な閲覧方法
+1. Githubのこのブランチ上で「。」キーを押してgithub.devを開く
+1. github.devに[Draw.ioの拡張機能](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)を入れる
+
+※ダウンロードしてDraw.io上で開くのが一般的
+
 # Abstract
 I cannot join RCJJ2024 due to studying for the entrance exam.  
 And I cannot join RCJJ 2025 because my birthday is in April.  
