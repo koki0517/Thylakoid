@@ -5,7 +5,6 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <VL53L0X.h>
-#include <VL53L1X.h>
 #include "../EEPROM/EEPROM_Address.h"
 
 /*数多のToFセンサをまとめるクラス
@@ -36,18 +35,16 @@ private:
   VL53L0X VL53L0X;
   VL53L1X VL53L1X;
   const char FirstAddress_VL1 = 0x30; 
-  uint8_t XSHUT_WALL_VL1[2] = {5,6};
-  uint8_t numToF_VL1 = sizeof(XSHUT_WALL_VL1)/sizeof(uint8_t);
+  uint8_t XSHUT_WALL_VL1[] = {5,6};
+  uint8_t numToF_VL1 = sizeof(XSHUT_WALL)/sizeof(uint8_t);
   const char FirstAddress_VL0 = 0x50; 
-  uint8_t XSHUT_WALL_VL0[2] = {3,4};
-  uint8_t numToF_VL0 = sizeof(XSHUT_WALL_VL0)/sizeof(uint8_t);
-  VL53L0X VL53L0X[numToF_VL0];
-  VL53L1X VL53L1X[numToF_VL1];
+  uint8_t XSHUT_WALL_VL0[] = {3,4};
+  uint8_t numToF_VL0 = sizeof(XSHUT_WALL)/sizeof(uint8_t);
 };
 
 // センサーの通し番号
-const uint8_t ToF_FLOOR_LEFT = 9;
-const uint8_t ToF_FLOOR_RIGHT = 10;
+const ToF_FLOOR_LEFT = 9;
+const ToF_FLOOR_RIGHT = 10;
 
 class FloorToF {
 public:
@@ -60,7 +57,7 @@ private:
   VL53L0X VL53L0X;
   TwoWire *theWire;
   const char FirstAddress = 0x01;
-  uint8_t XSHUT_FLOOR[2] = {9,10};
+  uint8_t XSHUT_FLOOR[] = {9,10};
   uint8_t numToF = sizeof(XSHUT_FLOOR)/sizeof(uint8_t);
   uint16_t FloorProtrusion;
 };

@@ -18,7 +18,7 @@
 
 class Gyro {
 public:
-  int init(int Madgwickfrequency); // こいつだけintだから注意 初期化に成功すると正の値、失敗すると負の値が返ってくる
+  int init(); // こいつだけintだから注意 初期化に成功すると正の値、失敗すると負の値が返ってくる
   void get_xyz(float* gyroX,float* gyroY,float* gyroZ);
   void get_raw(float* rawGyroX,float* rawGyroY,float* rawGyroZ, float* rawAccX,float* rawAccY,float* rawAccZ);
   int8_t hill();
@@ -27,7 +27,7 @@ public:
   void UpdateGyro();
 private:
   float accX, accY, accZ; // 生の加速度が入る
-  float gyrX, gyrY,gyrZ; // 生の角度が入る
+  float gyrX, gyroY,gyrZ; // 生の角度が入る
   float filteredGyroX, filteredGyroY, filteredGyroZ; // 補正された加速度が入る
   float startingTilt; // EEPROM内に保存された値が入るZOY
 };
