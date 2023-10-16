@@ -3,8 +3,6 @@
 /*壁を見るセンサーたち---------------------------------------------------*/
 WallToF::WallToF(TwoWire *theWire){
   this->theWire = theWire;
-  VL53L0X VL53L0X[numToF_VL0];
-  VL53L1X VL53L1X[numToF_VL1];
 }
 
 bool WallToF::init(){
@@ -14,13 +12,13 @@ bool WallToF::init(){
   /*VL53L0X*/
   // すべてのVL53L0Xをオフにする
   for (uint8_t i = 0; i < numToF_VL0; i++) {
-    pinMode(XSHUT_WALL_VL0[i],OUTPUT);
-    digitalWrite(XSHUT_WALL_VL0[i], LOW);
+    pinMode(XSHUT_WALL_VL0[i],arduino::OUTPUT);
+    digitalWrite(XSHUT_WALL_VL0[i], arduino::LOW);
   }
 
   // 全てのToFを初期化
   for (uint8_t i = 0; i < numToF_VL0; i++) {
-    digitalWrite(XSHUT_WALL_VL0[i], HIGH);
+    digitalWrite(XSHUT_WALL_VL0[i], arduino::HIGH);
     delay(1);
     VL53L0X[i].setBus(*theWire);
     VL53L0X[i].setAddress(FirstAddress_VL0 + i);
@@ -44,13 +42,13 @@ bool WallToF::init(){
   /*VL53L1X--------------------------------------------------------------------------*/
   // すべてのVL53L1Xをオフにする
   for (uint8_t i = 0; i < numToF_VL1; i++) {
-    pinMode(XSHUT_WALL_VL1[i],OUTPUT);
-    digitalWrite(XSHUT_WALL_VL1[i], LOW);
+    pinMode(XSHUT_WALL_VL1[i],arduino::OUTPUT);
+    digitalWrite(XSHUT_WALL_VL1[i], arduino::LOW);
   }
 
   // 全てのToFを初期化
   for (uint8_t i = 0; i < numToF_VL0; i++) {
-    pinMode(XSHUT_WALL_VL1[i], INPUT); // Pololu曰くhighにしたくないらしい
+    pinMode(XSHUT_WALL_VL1[i], arduino::INPUT); // Pololu曰くhighにしたくないらしい
     delay(1);
 
     VL53L1X[i].setTimeout(500);

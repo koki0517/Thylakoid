@@ -10,13 +10,13 @@ SoftwareSerial mySoftwareSerial(/*rx =*/30, /*tx =*/31);
 DFRobotDFPlayerMini myDFPlayer;
 
 // エラーメッセージのファイル番号(仮)
-const ERROR_DISPLAY = 0;
-const ERROR_TOUCH = 1;
-const ERROR_GYRO = 2;
-const ERROR_RASPI = 3;
-const ERROR_COLOR = 4;
-const ERROR_WALL_TOF = 5;
-const ERROR_FLOOR_TOF = 6;
+const uint8_t ERROR_DISPLAY = 0;
+const uint8_t ERROR_TOUCH = 1;
+const uint8_t ERROR_GYRO = 2;
+const uint8_t ERROR_RASPI = 3;
+const uint8_t ERROR_COLOR = 4;
+const uint8_t ERROR_WALL_TOF = 5;
+const uint8_t ERROR_FLOOR_TOF = 6;
 
 class Voice {
 public:

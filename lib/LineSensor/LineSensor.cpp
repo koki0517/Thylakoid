@@ -3,13 +3,13 @@
 LineSensor::LineSensor(){
   // もしかしたらいらんのかも
   for (int8_t i=0; i < 3; i++){
-    pinMode(pins[i],INPUT);
+    pinMode(pins[i],arduino::INPUT);
   }
   //updateEEPROM()
 }
 
 int LineSensor::read(uint8_t pin){
-  return analogRead(pin[pin]);
+  return analogRead(pins[pin]);
 }
 
 // // いつか必要になるハズ
