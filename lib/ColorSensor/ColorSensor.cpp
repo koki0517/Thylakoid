@@ -1,6 +1,6 @@
 #include "ColorSensor.h"
 
-ColorSensor::ColorSensor(TwoWire *theWire) : theWire(theWire), color(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X){}
+ColorSensor::ColorSensor(TwoWire *theWire) : theWire(theWire), color(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X);
 
 bool ColorSensor::init(){
   updateEEPROM();
@@ -21,17 +21,17 @@ void ColorSensor::hsv(uint16_t *h,uint16_t *s,uint16_t *v){
   
   uint16_t maxRGB = max(r,max(g,b));
   uint16_t minRGB = min(r,min(g,b));
-  diff = maxRGB - minRGB;
+  uint16_t diff = maxRGB - minRGB;
 
   // Hue
   if (maxRGB == minRGB){
     *h = 0;
   } else if (maxRGB == r){
-    *h = 60 * ((g - b) / diff)
+    *h = 60 * ((g - b) / diff);
   } else if (maxRGB == g){
-    *h = 60 * ((b - r) / diff)
+    *h = 60 * ((b - r) / diff);
   } else if (maxRGB == b){
-    *h = 60 * ((r - g) / diff)
+    *h = 60 * ((r - g) / diff);
   }
   if (*h < 0) *h += 360;
 
@@ -46,7 +46,7 @@ void ColorSensor::hsv(uint16_t *h,uint16_t *s,uint16_t *v){
   *v = maxRGB;
 }
 
-uint8_t ColorSensor::color(){
+uint8_t ColorSensor::colorHSV(){
   uint16_t h, s, v;
   hsv(&h, &s, &v);
   if (HueGreenMin < h && h < HueGreenMax && s > SqturationGreenMin && v > ValueGreenMin){

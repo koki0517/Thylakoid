@@ -1,8 +1,8 @@
 #include <ToF.h>
 
 /*壁を見るセンサーたち---------------------------------------------------*/
-WallToF::WallToF(TwoWire *theWire){
-  this->theWire = theWire;
+WallToF::WallToF(TwoWire *WallWire){
+  this->WallWire = WallWire;
   VL53L0X VL53L0X[numToF_VL0];
   VL53L1X VL53L1X[numToF_VL1];
 }
@@ -14,15 +14,15 @@ bool WallToF::init(){
   /*VL53L0X*/
   // すべてのVL53L0Xをオフにする
   for (uint8_t i = 0; i < numToF_VL0; i++) {
-    pinMode(XSHUT_WALL_VL0[i],OUTPUT);
-    digitalWrite(XSHUT_WALL_VL0[i], LOW);
+    pinMode(XSHUT_WALL_VL0[i],arduino::OUTPUT);
+    digitalWrite(XSHUT_WALL_VL0[i], arduino::LOW);
   }
 
   // 全てのToFを初期化
   for (uint8_t i = 0; i < numToF_VL0; i++) {
-    digitalWrite(XSHUT_WALL_VL0[i], HIGH);
+    digitalWrite(XSHUT_WALL_VL0[i], arduino::HIGH);
     delay(1);
-    VL53L0X[i].setBus(*theWire);
+    VL53L0X[i].setBus(*WallWire);
     VL53L0X[i].setAddress(FirstAddress_VL0 + i);
     VL53L0X[i].setTimeout(500);
     if (!VL53L0X[i].init()){
@@ -44,13 +44,13 @@ bool WallToF::init(){
   /*VL53L1X--------------------------------------------------------------------------*/
   // すべてのVL53L1Xをオフにする
   for (uint8_t i = 0; i < numToF_VL1; i++) {
-    pinMode(XSHUT_WALL_VL1[i],OUTPUT);
-    digitalWrite(XSHUT_WALL_VL1[i], LOW);
+    pinMode(XSHUT_WALL_VL1[i],arduino::OUTPUT);
+    digitalWrite(XSHUT_WALL_VL1[i], arduino::LOW);
   }
 
   // 全てのToFを初期化
   for (uint8_t i = 0; i < numToF_VL0; i++) {
-    pinMode(XSHUT_WALL_VL1[i], INPUT); // Pololu曰くhighにしたくないらしい
+    pinMode(XSHUT_WALL_VL1[i], arduino::INPUT); // Pololu曰くhighにしたくないらしい
     delay(1);
 
     VL53L1X[i].setTimeout(500);
@@ -61,7 +61,7 @@ bool WallToF::init(){
     }
     VL53L1X[i].setAddress(FirstAddress_VL1 + i);
 
-    VL53L1X[i].setDistanceMode(VL53L1X::Long);
+    VL53L1X[i].setDistanceMode(VL53L1X[i]::Long);
     VL53L1X[i].setMeasurementTimingBudget(50000); 
 
     VL53L1X[i].startContinuous(50);
@@ -85,9 +85,9 @@ uint16_t WallToF::read(uint8_t sensor_number){
 
 /*床を見るセンサーたち------------------------------------------------------------------*/
 
-FloorToF(TwoWire *theWire){
+FloorToF(TwoWire *FloorWire){
   VL53L0X VL53L0X[numToF];
-  this->theWire = theWire;
+  this->FloorWire = FloorWire;
   // すべてのToFをオフにする
   for (int i = 0; i < numToF; i++) {
     pinMode(XSHUT_FLOOOR[i],OUTPUT);

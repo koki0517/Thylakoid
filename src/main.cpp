@@ -4,6 +4,10 @@
 */
 
 #include "arduino_freertos.h"
+
+#include "semphr.h"
+#include "queue.h"
+
 #include "avr/pgmspace.h"
 #include <Arduino.h>
 #include <Wire.h>
@@ -27,7 +31,7 @@ WallToF walltof(&Wire1);
 FloorToF floortof(&Wire);
 LoadCell loadcell; // initはない
 
-::xSemaphoreHandle mutexGyro;
+::SemaphoreHandle_t mutexGyro;
 
 static void task1(void*) {
   /*メインタスク

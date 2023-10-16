@@ -19,7 +19,7 @@ public:
   void rgb(uint16_t* red,uint16_t* green,uint16_t* blue);
   void hsv(uint16_t* h,uint16_t* s,uint16_t* v);
   void updateEEPROM();
-  uint8_t color(); // HSVベースで判断
+  uint8_t colorHSV(); // HSVベースで判断
 private:
   Adafruit_TCS34725 color;
   TwoWire *theWire;
@@ -27,5 +27,5 @@ private:
   const uint16_t HueGreenMin, HueGreenMax, SqturationGreenMin, ValueGreenMin;
 
   // 赤を赤たらしめるHSVの条件
-  const uint16_t HueRedMin, HueRedMax, SqturationRedMin, SqturationRedMin;
+  const uint16_t HueRedMin, HueRedMax, SqturationRedMin, SqturationRedMin, ValueRedMin;
 };

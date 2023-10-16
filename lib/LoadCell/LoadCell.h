@@ -15,6 +15,6 @@ public:
   int16_t position_pressed(int *resultant_force,int *position);
   void updateEEPROM();
 private:
-  uint8_t pins[] = {24,25};
+  uint8_t pins[2] = {24,25};
   int isPressed;
 };
