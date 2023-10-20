@@ -11,6 +11,7 @@
 #include "LoadCell.h"
 #include "LineSensor.h"
 
+Gyro gyro;
 PiZero2W lidar;
 ColorSensor colorLeft(&Wire);
 ColorSensor colorRight(&Wire1);
@@ -19,8 +20,11 @@ WallToF walltof(&Wire1);
 FloorToF floortof(&Wire);
 LoadCell loadcell; // initはない
 LineSensor line;
+Display display;
 
-void initDevices(){
+bool initDevices(){
+  // なんとなくbool型にしたけど別にvoidでいい希ガス
+
   if (!voice.init()){
     // mp3プレイヤーが見つかんなかったYO
     while (1){

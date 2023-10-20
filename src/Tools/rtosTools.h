@@ -4,12 +4,15 @@
 #include "semphr.h"
 #include "queue.h"
 
+#include "Gyro.h"
+
 SemaphoreHandle_t mutexGyro;
-QueueHandle_t queueGyroX, queueGyroY, queueGyroZ;
+QueueHandle_t QueueGyro;
 
 void xCreateRTOStools(){
+  // ジャイロのミューテックス
   mutexGyro = xSemaphoreCreateMutex();
-  queueGyroX = xQueueCreate( 10, sizeof( uint32_t ) );
-  queueGyroY = xQueueCreate( 10, sizeof( uint32_t ) );
-  queueGyroZ = xQueueCreate( 10, sizeof( uint32_t ) );
+
+  // 補正されたジャイロのデータ
+  QueueGyro = xQueueCreate(1, sizeof(filteredGyroXYZ));
 }
