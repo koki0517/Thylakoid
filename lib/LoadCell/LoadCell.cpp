@@ -3,7 +3,7 @@
 LoadCell::LoadCell(){
   // もしかしたらいらんのかも
   for (int8_t i=0; i < 3; i++){
-    pinMode(pins[i],INPUT);
+    pinMode(pins[i],arduino::INPUT);
   }
   updateEEPROM()
 }
@@ -13,7 +13,9 @@ bool LoadCell::isPressed(){
   int right = analogRead(RIGHT_LoadCell);
   if (left + right >= isPressed){
     return true;
-  } else return false;
+  } else {
+    return false;
+  }
 }
 
 int16_t LoadCell::position_pressed(int *resultant_force,int *position){
