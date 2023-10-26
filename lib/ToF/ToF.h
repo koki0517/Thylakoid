@@ -2,7 +2,7 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
+
 #include <Wire.h>
 #include <VL53L0X.h>
 #include "../EEPROM/EEPROM_Address.h"

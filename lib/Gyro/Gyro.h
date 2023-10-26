@@ -9,7 +9,7 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
+
 #include <SPI.h>
 #include <ICM42688.h>
 #include <MadgwickAHRS.h>

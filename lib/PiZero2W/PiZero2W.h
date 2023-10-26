@@ -6,7 +6,7 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
+
 #include "../EEPROM/EEPROM_Address.h"
 
 class PiZero2W {

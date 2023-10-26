@@ -2,7 +2,7 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
+
 #include "../EEPROM/EEPROM_Address.h"
 
 const uint8_t LEFT_LoadCell = 24;

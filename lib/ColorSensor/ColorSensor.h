@@ -2,7 +2,7 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
+
 #include <Wire.h>
 #include <Adafruit_TCS34725.h>
 #include "../EEPROM/EEPROM_Address.h"

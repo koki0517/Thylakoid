@@ -8,7 +8,6 @@
 // これなくてもいい希ガス
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
 
 // これは絶対必要
 #include <EEPROM.h>
