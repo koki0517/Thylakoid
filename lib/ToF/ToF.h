@@ -5,6 +5,7 @@
 
 #include <Wire.h>
 #include <VL53L0X.h>
+#include <VL53L1X.h>
 #include "../EEPROM/EEPROM_Address.h"
 
 /*数多のToFセンサをまとめるクラス
@@ -25,13 +26,15 @@ const uint8_t ToF_FRONT_RIGHT = 6;
 const uint8_t ToF_BACK_LEFT = 3;
 const uint8_t ToF_BACK_RIGHT = 4;
 
+TwoWire *WallWire;
+
 class WallToF {
 public:
   WallToF(TwoWire *WallWire = &Wire);
   bool init(); // タイムアウトでセンサを再起動するときもこれを使う
   uint16_t read(uint8_t sensor_number);
 private:
-  TwoWire *WallWire;
+  
   VL53L0X VL53L0X;
   VL53L1X VL53L1X;
   const char FirstAddress_VL1 = 0x30; 
@@ -46,6 +49,7 @@ private:
 const uint8_t ToF_FLOOR_LEFT = 9;
 const uint8_t ToF_FLOOR_RIGHT = 10;
 
+TwoWire *FloorWire;
 class FloorToF {
 public:
   FloorToF(TwoWire *FloorWire = &Wire);
@@ -55,7 +59,6 @@ public:
   void updateEEPROM();
 private:
   VL53L0X VL53L0X;
-  TwoWire *FloorWire;
   const char FirstAddress = 0x01;
   uint8_t XSHUT_FLOOR[2] = {9,10};
   uint8_t numToF = sizeof(XSHUT_FLOOR)/sizeof(uint8_t);

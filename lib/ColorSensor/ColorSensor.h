@@ -24,8 +24,8 @@ private:
   Adafruit_TCS34725 color;
   TwoWire *theWire;
   // 緑を緑たらしめるHSVの条件
-  const uint16_t HueGreenMin, HueGreenMax, SqturationGreenMin, ValueGreenMin;
+  uint16_t HueGreenMin, HueGreenMax, SqturationGreenMin, ValueGreenMin;
 
   // 赤を赤たらしめるHSVの条件
-  const uint16_t HueRedMin, HueRedMax, SqturationRedMin, SqturationRedMin, ValueRedMin;
+  uint16_t HueRedMin, HueRedMax, SqturationRedMin, SqturationRedMin, ValueRedMin;
 };

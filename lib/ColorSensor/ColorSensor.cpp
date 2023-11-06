@@ -1,10 +1,11 @@
 #include "ColorSensor.h"
 
-ColorSensor::ColorSensor(TwoWire *theWire) : theWire(theWire), color(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X);
+ColorSensor::ColorSensor(TwoWire *theWire) : theWire(theWire), color(TCS34725_INTEGRATIONTIME_614MS, TCS34725_GAIN_1X) {}
 
 bool ColorSensor::init(){
   updateEEPROM();
-  return color.begin(0x29,theWire);
+  bool success = color.begin(0x29,theWire);
+  return success;
 }
 
 void ColorSensor::rgb(uint16_t* red,uint16_t* green,uint16_t* blue){

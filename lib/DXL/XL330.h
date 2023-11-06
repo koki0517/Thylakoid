@@ -68,12 +68,12 @@ public:
   uint8_t torqueOffAll();
 
   // とっとこ はしるよハム太郎～♪
-  bool drive(float RPM);
-  uint8_t drive_for_degrees(float RPM, float degrees, uint8_t stop, unsigned int timeout_ms = 10000, bool wait = true);
+  bool drive(float RPM_LEFT, float RPM_RIGHT);
+  uint8_t drive_for_degrees(float RPM_LEFT, float RPM_RIGHT, float degrees, uint8_t stop, unsigned int timeout_ms = 10000, bool wait = true);
 
   // すみっこ はしるよハム太郎～♪
   bool run(uint8_t ID, float RPM);
-  bool run_for_degrees(uint8_t ID, float RPM, float degrees, unsigned int timeout_ms = 10000, bool wait = true);
+  bool run_for_degrees(uint8_t ID, float RPM, float degrees, uint8_t stop, unsigned int timeout_ms = 10000, bool wait = true);
 
   // 大すきなのは～ ヒマワリのタネ～♪
   float position(uint8_t ID);
@@ -81,4 +81,5 @@ public:
 private:
   const float MAXRPM = 110;
   uint8_t mode = VELOCITY;
+  float Kp_position = 1.0, Ki_position = 0, Kd_position = 5;
 };

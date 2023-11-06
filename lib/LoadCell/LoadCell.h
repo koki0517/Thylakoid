@@ -16,5 +16,5 @@ public:
   void updateEEPROM();
 private:
   uint8_t pins[2] = {24,25};
-  int isPressed;
+  int isPressedvalue = 1000; // あくまでも仮の数字
 };
