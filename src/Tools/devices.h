@@ -8,6 +8,7 @@
 #include "ColorSensor.h"
 #include "DFPlayer.h"
 #include "ToF.h"
+#include "FloorToF.h"
 #include "LoadCell.h"
 #include "LineSensor.h"
 
@@ -16,8 +17,8 @@ PiZero2W lidar;
 ColorSensor colorLeft(&Wire);
 ColorSensor colorRight(&Wire1);
 Voice voice;
-WallToF walltof(&Wire1);
-FloorToF floortof(&Wire);
+WallToF walltof;
+FloorToF floortof;
 LoadCell loadcell; // initはない
 LineSensor line;
 Display display;
@@ -69,14 +70,7 @@ bool initDevices(){
     }
   }
 
-  if (!floortof.init()){
-    // 床を監視するToFのどれかが見つかんなかったYO
-    while (1){
-      // voice.play(ERROR_FLOOR_TOF);
-      Serial.println("I missed your Floor ToF.");
-      ::vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-  }
+  floortof.init(); // 成功か否かを返す関数がないのでinit()のみ
 
   if (!colorLeft.init()){
     // ラズパイが見つかんなかったYO
