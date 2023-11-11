@@ -2,7 +2,7 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
+
 #include "../EEPROM/EEPROM_Address.h"
 
 const uint8_t LEFT_LoadCell = 24;
@@ -15,6 +15,6 @@ public:
   int16_t position_pressed(int *resultant_force,int *position);
   void updateEEPROM();
 private:
-  uint8_t pins[] = {24,25};
-  int isPressed;
+  uint8_t pins[2] = {24,25};
+  int isPressedvalue = 1000; // あくまでも仮の数字
 };

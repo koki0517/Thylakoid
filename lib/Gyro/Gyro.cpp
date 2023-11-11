@@ -15,12 +15,6 @@ int Gyro::init(int Madgwickfrequency){
   return IMU.begin();
 }
 
-void Gyro::get_xyz(float* gyroX,float* gyroY,float* gyroZ){
-  *gyroX = filteredGyroX;
-  *gyroY = filteredGyroY;
-  *gyroZ = filteredGyroZ;
-}
-
 void Gyro::get_raw(float* rawGyroX,float* rawGyroY,float* rawGyroZ, float* rawAccX,float* rawAccY,float* rawAccZ){
   *rawGyroX = gyrX;
   *rawGyroY = gyrY;
@@ -30,23 +24,7 @@ void Gyro::get_raw(float* rawGyroX,float* rawGyroY,float* rawGyroZ, float* rawAc
   *rawAccZ = accZ;
 }
 
-int8_t Gyro::hill(){
-  /* 普通にライントレースしてるときに使うよ
-   * 0 -> 平坦
-   * 1 -> 上り
-   * 2 -> 下り
-  */
-
-  float filteredGyroX = IMU.gyrX();
-  if (filteredGyroX >= 5){
-    return 1;
-  } else if (filteredGyroX <= 5){
-    return 2;
-  } else return 0;
-  // Note: 基板で実装する向きが決まらんことにはXYを判断できへん 加速度を使えば「登り始め」「下り始め」をより早く感知できるかも?
-}
-
-bool Gyro::seasaw(){
+bool Gyro::seesaw(){
   /* シーソーの傾き始める瞬間を加速度を用いて感知するよ
    * true -> シーソーが傾いた(加速度が大きい)
    * false -> まだ登り坂(加速度が小さい)
@@ -69,7 +47,22 @@ void Gyro::UpdateGyro(){
 
   MadgwickFilter.updateIMU(gyrX, gyrY, gyrZ, accX, accY, accZ);
 
-  filteredGyroX = MadgwickFilter.getRoll();
-  filteredGyroY = MadgwickFilter.getPitch();
-  filteredGyroZ = MadgwickFilter.getYaw();
+  gyroXYZ_2.X = MadgwickFilter.getRoll();
+  gyroXYZ_2.Y = MadgwickFilter.getPitch();
+  gyroXYZ_2.Z = MadgwickFilter.getYaw();
+
+  /* 普通にライントレースしてるときに使うよ
+   * 0 -> 平坦
+   * 1 -> 上り
+   * 2 -> 下り
+  */
+  if (gyroXYZ_2.X > 5){
+    gyroXYZ_2.hill = 1;
+  } else if (gyroXYZ_2.X < -5){
+    gyroXYZ_2.hill = 2;
+  } else {
+    gyroXYZ_2.hill = 0;
+  }
+  // Note: 基板で実装する向きが決まらんことにはXYを判断できへん 加速度を使えば「登り始め」「下り始め」をより早く感知できるかも?
+  //       生の加速度がどのくらい信用できるかにもよるけど、
 }

@@ -7,9 +7,9 @@ bool Voice::init(){
   // DFPlayerを初期化します。USBピンを使ってなければ、デバイスはSD(TF)カードが選択されます。
   if (!myDFPlayer.begin(mySoftwareSerial)) {
     // 2秒以内に初期化できなかった場合はエラーメッセージを表示
-    Serial.println(F("Unable to begin:"));
-    Serial.println(F("1.Please recheck the connection!"));
-    Serial.println(F("2.Please insert the SD card!"));
+    Serial.println("Unable to begin:");
+    Serial.println("1.Please recheck the connection!");
+    Serial.println("2.Please insert the SD card!");
     while (true) {
       delay(0); // Code to compatible with ESP8266 watch dog.
     }
@@ -32,19 +32,19 @@ void Voice::volume(uint8_t volume){
 void printDetail(uint8_t type, int value){
   switch (type) {
     case TimeOut:
-      Serial.println(F("Time Out!"));
+      Serial.println("Time Out!");
       break;
     case WrongStack:
-      Serial.println(F("Stack Wrong!"));
+      Serial.println("Stack Wrong!");
       break;
     case DFPlayerCardInserted:
-      Serial.println(F("Card Inserted!"));
+      Serial.println("Card Inserted!");
       break;
     case DFPlayerCardRemoved:
-      Serial.println(F("Card Removed!"));
+      Serial.println("Card Removed!");
       break;
     case DFPlayerCardOnline:
-      Serial.println(F("Card Online!"));
+      Serial.println("Card Online!");
       break;
     case DFPlayerUSBInserted:
       Serial.println("USB Inserted!");
@@ -53,33 +53,33 @@ void printDetail(uint8_t type, int value){
       Serial.println("USB Removed!");
       break;
     case DFPlayerPlayFinished:
-      Serial.print(F("Number:"));
+      Serial.print("Number:");
       Serial.print(value);
-      Serial.println(F(" Play Finished!"));
+      Serial.println(" Play Finished!");
       break;
     case DFPlayerError:
-      Serial.print(F("DFPlayerError:"));
+      Serial.print("DFPlayerError:");
       switch (value) {
         case Busy:
-          Serial.println(F("Card not found"));
+          Serial.println("Card not found");
           break;
         case Sleeping:
-          Serial.println(F("Sleeping"));
+          Serial.println("Sleeping");
           break;
         case SerialWrongStack:
-          Serial.println(F("Get Wrong Stack"));
+          Serial.println("Get Wrong Stack");
           break;
         case CheckSumNotMatch:
-          Serial.println(F("Check Sum Not Match"));
+          Serial.println("Check Sum Not Match");
           break;
         case FileIndexOut:
-          Serial.println(F("File Index Out of Bound"));
+          Serial.println("File Index Out of Bound");
           break;
         case FileMismatch:
-          Serial.println(F("Cannot Find File"));
+          Serial.println("Cannot Find File");
           break;
         case Advertise:
-          Serial.println(F("In Advertise"));
+          Serial.println("In Advertise");
           break;
         default:
           break;
