@@ -78,6 +78,7 @@ public:
   // 大すきなのは～ ヒマワリのタネ～♪
   float position(uint8_t ID);
   bool changeMode(uint8_t ID, uint8_t mode);
+  void updateEEPROM();
 private:
   const float MAXRPM = 110;
   uint8_t mode = VELOCITY;

@@ -1,6 +1,7 @@
 #include "XL330.h"
 
 bool XL330::init(){
+  updateEEPROM();
   dxl.begin(1000000); // 1MHz!! 速い!!
   dxl.setPortProtocolVersion(2.0);
   for (uint8_t DXL_ID = 1; DXL_ID < 5; DXL_ID++){
@@ -222,4 +223,10 @@ bool XL330::changeMode(uint8_t ID, uint8_t new_mode){
   dxl.torqueOn(ID);
 
   return true;
+}
+
+void XL330::updateEEPROM(){
+  EEPROM.get(EEP_Kp_position, Kp_position);
+  EEPROM.get(EEP_Ki_position, Ki_position);
+  EEPROM.get(EEP_Kd_position, Kd_position);
 }

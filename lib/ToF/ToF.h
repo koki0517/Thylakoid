@@ -21,10 +21,12 @@ VL6180Xは近距離用
 */
 
 // センサーの通し番号(XSHUTピンに対応させる)
-const uint8_t ToF_FRONT_LEFT = 5;
-const uint8_t ToF_FRONT_RIGHT = 6;
-const uint8_t ToF_BACK_LEFT = 3;
-const uint8_t ToF_BACK_RIGHT = 4;
+enum ToF_Sensor {
+  ToF_FRONT_LEFT = 5,
+  ToF_FRONT_RIGHT = 6,
+  ToF_BACK_LEFT = 3,
+  ToF_BACK_RIGHT = 4
+};
 
 #include <vector>
 
