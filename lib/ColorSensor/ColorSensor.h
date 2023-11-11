@@ -2,7 +2,7 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
+
 #include <Wire.h>
 #include <Adafruit_TCS34725.h>
 #include "../EEPROM/EEPROM_Address.h"
@@ -24,8 +24,8 @@ private:
   Adafruit_TCS34725 color;
   TwoWire *theWire;
   // 緑を緑たらしめるHSVの条件
-  const uint16_t HueGreenMin, HueGreenMax, SqturationGreenMin, ValueGreenMin;
+  uint16_t HueGreenMin, HueGreenMax, SqturationGreenMin, ValueGreenMin;
 
   // 赤を赤たらしめるHSVの条件
-  const uint16_t HueRedMin, HueRedMax, SqturationRedMin, SqturationRedMin, ValueRedMin;
+  uint16_t HueRedMin, HueRedMax, SqturationRedMin, SqturationRedMin, ValueRedMin;
 };

@@ -8,15 +8,14 @@
 // これなくてもいい希ガス
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
 
 // これは絶対必要
 #include <EEPROM.h>
 
 // ライントレースのPID制御の比例定数
-const int16_t EEP_Kp = 0;
-const int16_t EEP_Ki = 4;
-const int16_t EEP_Kd = 8;
+const uint16_t EEP_Kp = 0;
+const uint16_t EEP_Ki = 4;
+const uint16_t EEP_Kd = 8;
 
 // 緑を緑たらしめるHSVの条件
 const uint16_t EEP_HueGreenMin = 12;
@@ -35,3 +34,7 @@ const uint16_t EEP_STARTINGTILT = 28; // float from 0 to 3
 const uint16_t EEP_FloorProtrusion = 32;
 
 const uint16_t EEP_LoadCell_isPressed = 34;
+
+const uint16_t EEP_Kp_position = 36;
+const uint16_t EEP_Ki_position = 38;
+const uint16_t EEP_Kd_position = 40;

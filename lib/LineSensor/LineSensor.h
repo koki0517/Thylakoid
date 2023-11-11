@@ -2,7 +2,7 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-#include <Arduino.h>
+
 
 class LineSensor { 
 public:
