@@ -15,36 +15,34 @@ typedef struct{
   char HATA[12] = "HATASEN";
 } MOVIE;
 
-MOVIE Movie;
-
 // 写真のファイル名
 typedef struct{
   char HOME[9] = "HOME";
 } PHOTO;
 
-PHOTO Photo;
-
-enum photoError{
-  PHOTO_OK,
+enum PhotoError{
+  FILE_OK,
   FILE_NOT_FOUND,
-  PHOTO_SIZE_ERROR,
+  FILE_SIZE_ERROR,
 };
 
 class Display {
 public:
   Display();
   bool init();
-  void clear();
+  void clear(uint16_t color = ILI9341_BLACK);
   
-  void playMovie(char *filename);
-  void drawPhoto(char *filename, int x, int y);
+  uint8_t playMovie(char *filename);
+  uint8_t drawPhoto(char *filename, int x, int y);
 
-  uint8_t convertPhotoBMPtoRGB565(char *readFileName, char *writeFileName, bool ifDisplay, bool writeSize = false /*基本的にfalseにする*/);
-  uint8_t convertMovieBMPtoRGB565(char *writeFileName, unsigned long numPhotos, bool ifDisplay);
+  // 使うことはないだろう
+  uint8_t convertPhotoBMPtoRGB565(char *readFileName, char *writeFileName, bool ifDisplay, bool writeSize = true);
+  uint8_t convertMovieBMPtoRGB565(char *writeFileName, int numPhotos, bool ifDisplay);
 
   void updateEEPROM();
 
-  unsigned long clock = 60000000;
+  // EEPROMをねじ込まれる要員
+  unsigned long clockDisplay = 60000000;
   uint8_t displayDirection = 3;
 private:
   #define TFT_DC  9

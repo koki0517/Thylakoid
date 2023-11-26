@@ -8,9 +8,9 @@ Teensy4.1のEEPROMのサイズは4284bytes
 | 型 | flost |  float  |  float  | uint16_t | uint16_t | uint16_t | uint16_t | uint16_t | uint16_t | uint16_t | uint16_t |  float  | uint16_t | int16_t |
 | 概要 |  ライントレースのKp  |  ライントレースのKi  |  ライントレースのKd  |  |  |  |  |  |  |  |  | 傾き始めたときの加速度 | バンプないし坂を検知したとする床との距離 | 左右のロードセルにかかる力の合力で押されたと判断する基準 |
 
-| 変数名 | Kp_position | Ki_position  | Kd_position  |
-| ----- | ----------- | ------------ | ------------ |
-| アドレス |     36    |     40       |     44       |
-| 領域 |     36~39     |   40~43      |    44~47     |
-| 型 |      float      |    float     |     float    |
-| 概要 |DXL位置制御のKp |DXL位置制御のKi|DXL位置制御のKd|
+| 変数名 | Kp_position | Ki_position  | Kd_position  | clockDisplay  | displayDirection  |
+| ----- | ----------- | ------------ | ------------ | -------------- | ---------------- |
+| アドレス |     36    |     40       |     44       |      48       |        52         |
+| 領域 |     36~39     |   40~43      |    44~47     |    48~51      |        52         |
+| 型 |      float      |    float     |     float    | unsigned long |     uint8_t       |
+| 概要 |DXL位置制御のKp |DXL位置制御のKi|DXL位置制御のKd| SPI0のクロック | ディスプレイの向き |

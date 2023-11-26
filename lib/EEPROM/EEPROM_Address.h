@@ -36,5 +36,8 @@ const uint16_t EEP_FloorProtrusion = 32;
 const uint16_t EEP_LoadCell_isPressed = 34;
 
 const uint16_t EEP_Kp_position = 36;
-const uint16_t EEP_Ki_position = 38;
-const uint16_t EEP_Kd_position = 40;
+const uint16_t EEP_Ki_position = 40;
+const uint16_t EEP_Kd_position = 44;
+
+const unsigned long EEP_clockDisplay = 48;
+const uint8_t EEP_diaplayDirection = 52;

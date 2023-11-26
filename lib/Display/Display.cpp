@@ -4,11 +4,11 @@ Display::Display(){}
 
 bool Display::init(){
   // EEPROMの読み出し
-  updateEEPROM();
+  // updateEEPROM();
 
   // ILI9341の初期化
   tft.begin();
-  tft.setClock(clock);
+  tft.setClock(clockDisplay);
   tft.fillScreen(ILI9341_BLUE);
   tft.setRotation( displayDirection );
   tft.setTextColor(ILI9341_WHITE);
@@ -25,21 +25,101 @@ bool Display::init(){
     tft.println("failed to access SD card!");
     delay(1000);
   }
+  return true;
 }
 
-void Display::clear(){
+void Display::clear(uint16_t color){
+  /* キョムリな画面を創るんだ */
+  tft.fillScreen(color);
 }
 
-void Display::drawPhoto(char *filename, int x, int y){
+uint8_t Display::drawPhoto(char *filename, int xStart, int yStart){
   /* 写真を表示しようそうしよう */
+  int bmpWidth, bmpHeight;   // W+H in pixels
+
+  String filePath = String(filename) + ".txt";
+  const char* _filePath = filePath.c_str();
+  FsFile bmpFile = sd.open(_filePath, FILE_READ);
+  if (!bmpFile) {
+    Serial.print("File not found");
+    return FILE_NOT_FOUND;
+  }
+
+  bmpHeight = read32(bmpFile);
+  bmpWidth  = read32(bmpFile);
+  if (bmpHeight > 240 || bmpWidth > 320) return FILE_SIZE_ERROR;
+
+  uint32_t startTime = millis();
+
+  // 実際に描画する部分
+  tft.beginSPITransaction(tft._clock);
+  tft.setAddr(xStart, yStart, 319, 239); //書く範囲指定
+  tft.writecommand_cont(ILI9341_RAMWR);
+  for(int y=0; y<240*320; y++){
+    if(y==240*320-1){//最後はwritedata16_last
+        tft.writedata16_last(read16(bmpFile)); 
+        tft.endSPITransaction(); //描画終了
+      }
+    else tft.writedata16_cont(read16(bmpFile)); //ピクセル(x,y)描画
+  }
+
+  // while(millis()-startTime <= 49); //fps固定
+  // かかった時間の表示
+  Serial.print("Loaded in ");
+  Serial.print(millis() - startTime);
+  Serial.println(" ms");
+
+  bmpFile.close();
+  return FILE_OK;
 }
 
-void Display::playMovie(char *filename){
-  /* 動画を流そうぞ */
+uint8_t Display::playMovie(char *filename){
+  /* 動画を流そうぞ 
+   * ファイルサイズは240*320しか受け入れません。断じて、
+  */
+  int bmpWidth, bmpHeight;   // W+H in pixels
+
+  String filePath = String(filename) + ".txt";
+  const char* _filePath = filePath.c_str();
+  FsFile bmpFile = sd.open(_filePath, FILE_READ);
+  if (!bmpFile) {
+    Serial.print("File not found");
+    return FILE_NOT_FOUND;
+  }
+
+  bmpHeight = read32(bmpFile);
+  bmpWidth  = read32(bmpFile);
+  if (bmpHeight != 240 || bmpWidth != 320) return FILE_SIZE_ERROR;
+
+  for(int i = 0; i <= 6043; i++) {
+    uint32_t startTime = millis();
+
+    // 実際に描画する部分
+    tft.beginSPITransaction(tft._clock);
+    tft.setAddr(0, 0, 319, 239); //書く範囲指定
+    tft.writecommand_cont(ILI9341_RAMWR);
+    for(int y=0; y<240*320; y++){
+      if(y==240*320-1){//最後はwritedata16_last
+          tft.writedata16_last(read16(bmpFile)); 
+          tft.endSPITransaction(); //描画終了
+        }
+      else tft.writedata16_cont(read16(bmpFile)); //ピクセル(x,y)描画
+    }
+
+    // while(millis()-startTime <= 49); //fps固定
+    // かかった時間の表示
+    Serial.print("Loaded in ");
+    Serial.print(millis() - startTime);
+    Serial.println(" ms");
+  }
+  bmpFile.close();
+  return FILE_OK;
 }
 
 void Display::updateEEPROM(){
   // EEPROMの読み出し 4284バイトもあるんだってすごいね
+  EEPROM.get(EEP_diaplayDirection, displayDirection);
+  EEPROM.get(EEP_clockDisplay, clockDisplay);
 }
 
 uint8_t Display::convertPhotoBMPtoRGB565(char *readFileName, char *writeFileName, bool ifDisplay, bool writeSize){
@@ -91,8 +171,8 @@ uint8_t Display::convertPhotoBMPtoRGB565(char *readFileName, char *writeFileName
   // Crop area to be loaded
   w = bmpWidth; // 320
   h = bmpHeight; // 240
-  if (w > 320) return PHOTO_SIZE_ERROR;
-  if (h > 240) return PHOTO_SIZE_ERROR;
+  if (w > 320) return FILE_SIZE_ERROR;
+  if (h > 240) return FILE_SIZE_ERROR;
 
   // 画像サイズ分のメモリを確保
   uint16_t **awColors = new uint16_t *[h];
@@ -172,34 +252,34 @@ uint8_t Display::convertPhotoBMPtoRGB565(char *readFileName, char *writeFileName
   Serial.println(" ms");
 
   bmpFile.close();
-  return PHOTO_OK;
+  return FILE_OK;
 }
 
-uint8_t Display::convertMovieBMPtoRGB565(char *writeFileName /* 書き込み先のファイル名 元のBMPは0.bmp~n.bmpになっているものとする*/, unsigned long numPhotos /* 写真の枚数 */, bool ifdisplay ){
+uint8_t Display::convertMovieBMPtoRGB565(char *writeFileName /* 書き込み先のファイル名 元のBMPは0.bmp~n.bmpになっているものとする*/, int numPhotos /* 写真の枚数 */, bool ifdisplay ){
   /* BMPから構成される動画をRGB565に変換しよう 
    * もっと効率的な方法はもちろん頭にはあるけど、面倒だからつくらない
   */
-  uint8_t result = convertPhotoBMPtoRGB565("0", writeFileName, ifdisplay, true);
-  if (result != PHOTO_OK) return result;
+  char fnum[4];
+  itoa(0, fnum, 10);
+  uint8_t result = convertPhotoBMPtoRGB565(fnum, writeFileName, ifdisplay, true);
+  if (result != FILE_OK) return result;
   for (int i=1; i<numPhotos; i++){
     char fnum[4];
     itoa(i, fnum, 10);
     result = convertPhotoBMPtoRGB565(fnum, writeFileName, ifdisplay, false);
-    if (result != PHOTO_OK) return result;
+    if (result != FILE_OK) return result;
   }
-  return PHOTO_OK;
+  return FILE_OK;
 }
 
-/* ==================== Private ==================== */
-
-uint16_t read16(FsFile &f) {
+uint16_t Display::read16(FsFile &f) {
   uint16_t result;
   ((uint8_t *)&result)[0] = f.read(); // LSB
   ((uint8_t *)&result)[1] = f.read(); // MSB
   return result;
 }
 
-uint32_t read32(FsFile &f) {
+uint32_t Display::read32(FsFile &f) {
   uint32_t result;
   ((uint8_t *)&result)[0] = f.read(); // LSB
   ((uint8_t *)&result)[1] = f.read();
@@ -207,3 +287,5 @@ uint32_t read32(FsFile &f) {
   ((uint8_t *)&result)[3] = f.read(); // MSB
   return result;
 }
+
+/* ==================== Private ==================== */

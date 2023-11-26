@@ -23,6 +23,9 @@ LoadCell loadcell; // initはない
 LineSensor line;
 Display display;
 
+MOVIE Movie;
+PHOTO Photo;
+
 bool initDevices(){
   // なんとなくbool型にしたけど別にvoidでいい希ガス
 
