@@ -11,13 +11,16 @@
 
 // 動画のファイル名
 typedef struct{
-  char MATSUKEN[13] = "MATSUKEN";
-  char HATA[12] = "HATASEN";
+  String FileName;
+  int numPhotos;
 } MOVIE;
 
 // 写真のファイル名
 typedef struct{
-  char HOME[9] = "HOME";
+  String HOME = "HOME";
+  String LOP = "LOP";
+  String SENSOR = "SENSOR";
+  String TASK_BAR = "BAR";
 } PHOTO;
 
 enum PhotoError{
@@ -30,18 +33,19 @@ class Display {
 public:
   Display();
   bool init();
-  void clear(uint16_t color = ILI9341_BLACK);
+  void clear(uint16_t color);
   
-  uint8_t playMovie(char *filename);
-  uint8_t drawPhoto(char *filename, int x, int y);
+  uint8_t playMovie(MOVIE *movie);
+  uint8_t drawPhoto(String *filename, int x, int y);
 
   // 使うことはないだろう
-  uint8_t convertPhotoBMPtoRGB565(char *readFileName, char *writeFileName, bool ifDisplay, bool writeSize = true);
-  uint8_t convertMovieBMPtoRGB565(char *writeFileName, int numPhotos, bool ifDisplay);
+  uint8_t convertPhotoBMPtoRGB565(String readFileName, String writeFileName, bool ifDisplay, bool writeSize = false /*基本的にfalseにする*/);
+  uint8_t convertMovieBMPtoRGB565(MOVIE *movie, bool ifDisplay);
 
   void updateEEPROM();
+  uint64_t getFrameCount(MOVIE *movie); // 動画のフレーム数を返す
 
-  // EEPROMをねじ込まれる要員
+  // EEPROMをねじ込まれる要員 あゝあわれ
   unsigned long clockDisplay = 60000000;
   uint8_t displayDirection = 3;
 private:
@@ -56,4 +60,5 @@ private:
   #define BUFFPIXEL 240
   uint16_t read16(FsFile &f);
   uint32_t read32(FsFile &f);
+  uint8_t getSize(String *filename, int *width, int *height);
 };

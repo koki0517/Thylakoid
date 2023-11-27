@@ -19,7 +19,7 @@ FLASHMEM __attribute__((noinline)) void setup() {
   ::xTaskCreate(task_Sensor, "task_Sensor", 8192, nullptr, 2, nullptr);
   ::xTaskCreate(task_UI, "task_UI", 8192, nullptr, 2, nullptr);
   ::vTaskStartScheduler();
-  // ここの下には何も書くな!!バグの元!!
+  // ここの下には何も書くな!!
 }
 
 void loop(){} // nothing to do is here
