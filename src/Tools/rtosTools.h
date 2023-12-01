@@ -6,6 +6,7 @@
 
 #include "Gyro.h"
 
+TaskHandle_t taskUI, taskSensor, taskMain;
 SemaphoreHandle_t mutexGyro, mutexUI, mutexSerial;
 QueueHandle_t QueueGyro;
 

@@ -15,11 +15,11 @@ FLASHMEM __attribute__((noinline)) void setup() {
   // RTOSの設定
   xCreateRTOStools(); // キューとかセマフォをつくるよ
 
-  ::xTaskCreate(task_Main, "task_Main", 8192, nullptr, 2, nullptr);
-  ::xTaskCreate(task_Sensor, "task_Sensor", 8192, nullptr, 2, nullptr);
-  ::xTaskCreate(task_UI, "task_UI", 8192, nullptr, 2, nullptr);
+  ::xTaskCreate(task_Main, "task_Main", 8192, nullptr, 2, &taskMain);
+  ::xTaskCreate(task_Sensor, "task_Sensor", 8192, nullptr, 2, &taskSensor);
+  ::xTaskCreate(task_UI, "task_UI", 8192, nullptr, 2, &taskUI);
   ::vTaskStartScheduler();
   // ここの下には何も書くな!!
 }
 
-void loop(){} // nothing to do is here
+void loop(){/* ｷｮﾑﾘ */}

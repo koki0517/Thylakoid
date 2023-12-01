@@ -219,11 +219,11 @@ uint8_t Display::convertPhotoBMPtoRGB565(String readFileName, String writeFileNa
     tft.writecommand_cont(ILI9341_RAMWR);
     for(int y=0; y<h; y++){
       for(int x=0; x<w; x++){
-          if(x==319 && y==239){//最後はwritedata16_last
-                tft.writedata16_last(awColors[y][x]); 
-                tft.endSPITransaction(); //描画終了
-            }
-          else tft.writedata16_cont(awColors[y][x]); //ピクセル(x,y)描画
+        if(x==319 && y==239){//最後はwritedata16_last
+          tft.writedata16_last(awColors[y][x]); 
+          tft.endSPITransaction(); //描画終了
+        }
+        else tft.writedata16_cont(awColors[y][x]); //ピクセル(x,y)描画
       }
     }
   }

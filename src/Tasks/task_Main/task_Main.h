@@ -5,4 +5,4 @@
 #include "../../Tools/rtosTools.h"
 #include "../../Tools/devices.h"
 
-void task_Main(void*);
+void task_Main(void *pvParameters);

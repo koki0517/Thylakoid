@@ -5,4 +5,4 @@
 #include "../../Tools/rtosTools.h"
 #include "../../Tools/devices.h"
 
-void task_Sensor(void*);
+void task_Sensor(void *pvParameters);
