@@ -1,7 +1,7 @@
 /* 
- * これはメインなプログラムだよ!
+ * ここはメインプログラムだよ!
  * FreeRTOSで動くよ！
-*/
+ */
 
 #include "./Tasks/task_UI/task_UI.h"
 #include "./Tasks/task_Sensor/task_Sensor.h"
@@ -9,7 +9,6 @@
 
 FLASHMEM __attribute__((noinline)) void setup() {
   Serial.begin(115200); // これから始めなきゃArduinoって感じがしないよね こだわり
-
   initDevices(); // 数多のセンサーその他もろもろの初期化 初期化できないデバイスがあったらそれをシリアルに吐露し続けるよ。永遠にね、
 
   // RTOSの設定
@@ -18,6 +17,7 @@ FLASHMEM __attribute__((noinline)) void setup() {
   ::xTaskCreate(task_Main, "task_Main", 8192, nullptr, 2, &taskMain);
   ::xTaskCreate(task_Sensor, "task_Sensor", 8192, nullptr, 2, &taskSensor);
   ::xTaskCreate(task_UI, "task_UI", 8192, nullptr, 2, &taskUI);
+  ::vTaskSuspend(taskUI); // UIは基本Mainで処理して、走行中だけはtaskUIを起動する
   ::vTaskStartScheduler();
   // ここの下には何も書くな!!
 }

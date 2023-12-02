@@ -25,6 +25,7 @@ Display display;
 
 MOVIE Movie;
 PHOTO Photo;
+LineSensorData lineData;
 
 bool initDevices(){
   // なんとなくbool型にしたけど別にvoidでいい希ガス
