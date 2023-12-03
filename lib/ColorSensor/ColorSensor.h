@@ -8,9 +8,16 @@
 #include "../EEPROM/EEPROM_Address.h"
 
 // 判断する色
-const uint8_t OTHERS = 0; // 緑でも赤でもない
-const uint8_t GREEN = 1; // 緑色
-const uint8_t RED = 2; // 赤色
+enum Colors {
+  OTHERS = 0, // 緑でも赤でもない
+  GREEN = 1, // 緑色
+  RED = 2, // 赤色
+};
+
+typedef struct {
+  uint8_t LEFT;
+  uint8_t RIGHT;
+} Color;
 
 class ColorSensor {
 public:

@@ -36,7 +36,7 @@ bool Gyro::seesaw(){
   // Note: 上前半に同じく
 }
 
-void Gyro::UpdateGyro(){
+void Gyro::UpdateGyro(filteredGyroXYZ *gyroXYZ){
   // 生の値を取得 内部である程度補正はされてるけどね
   gyrX = IMU.gyrX();
   gyrY = IMU.gyrY();
@@ -47,21 +47,21 @@ void Gyro::UpdateGyro(){
 
   MadgwickFilter.updateIMU(gyrX, gyrY, gyrZ, accX, accY, accZ);
 
-  gyroXYZ_2.X = MadgwickFilter.getRoll();
-  gyroXYZ_2.Y = MadgwickFilter.getPitch();
-  gyroXYZ_2.Z = MadgwickFilter.getYaw();
+  gyroXYZ->X = MadgwickFilter.getRoll();
+  gyroXYZ->Y = MadgwickFilter.getPitch();
+  gyroXYZ->Z = MadgwickFilter.getYaw();
 
   /* 普通にライントレースしてるときに使うよ
    * 0 -> 平坦
    * 1 -> 上り
    * 2 -> 下り
   */
-  if (gyroXYZ_2.X > 5){
-    gyroXYZ_2.hill = 1;
-  } else if (gyroXYZ_2.X < -5){
-    gyroXYZ_2.hill = 2;
+  if (gyroXYZ->X > 5){
+    gyroXYZ->hill = 1;
+  } else if (gyroXYZ->X < -5){
+    gyroXYZ->hill = 2;
   } else {
-    gyroXYZ_2.hill = 0;
+    gyroXYZ->hill = 0;
   }
   // Note: 基板で実装する向きが決まらんことにはXYを判断できへん 加速度を使えば「登り始め」「下り始め」をより早く感知できるかも?
   //       生の加速度がどのくらい信用できるかにもよるけど、

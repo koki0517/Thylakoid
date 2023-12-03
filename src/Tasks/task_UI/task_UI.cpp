@@ -7,6 +7,8 @@ void task_UI(void *pvParameters){
    * MainTaskによって生えてきたり消えたりする
    */
 
+  filteredGyroXYZ gyroXYZ_3;
+
   while (1) {
     // ジャイロのデータを取得 あくまでもデータは消さない
     xQueuePeek(QueueGyro, &gyroXYZ_3, 0);

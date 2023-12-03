@@ -23,17 +23,13 @@ typedef struct {
   uint8_t hill;
 }filteredGyroXYZ;
 
-filteredGyroXYZ gyroXYZ_1;
-filteredGyroXYZ gyroXYZ_2;
-filteredGyroXYZ gyroXYZ_3;
-
 class Gyro {
 public:
   int init(int Madgwickfrequency); // こいつだけintだから注意 初期化に成功すると正の値、失敗すると負の値が返ってくる
   void get_raw(float* rawGyroX,float* rawGyroY,float* rawGyroZ, float* rawAccX,float* rawAccY,float* rawAccZ);
   bool seesaw();
   void updateEEPROM();
-  void UpdateGyro();
+  void UpdateGyro(filteredGyroXYZ *gyroXYZ);
 private:
   float accX, accY, accZ; // 生の加速度が入る
   float gyrX, gyrY,gyrZ; // 生の角度が入る

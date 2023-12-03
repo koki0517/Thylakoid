@@ -7,7 +7,7 @@
 #include "PiZero2W.h"
 #include "ColorSensor.h"
 #include "DFPlayer.h"
-#include "ToF.h"
+#include "WallToF.h"
 #include "FloorToF.h"
 #include "LoadCell.h"
 #include "LineSensor.h"
