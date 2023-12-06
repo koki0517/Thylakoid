@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-12-03T08:15:08.288Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="t5TSLhxuxlUskbg5iXpN" version="22.1.5" type="github">
+<mxfile host="app.diagrams.net" modified="2023-12-06T15:49:50.787Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="YhxEB35L7nPsEoJlkZwp" version="22.1.5" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="3713" dy="2350" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="4456" dy="2820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -21,12 +21,6 @@
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-2" value="&lt;font style=&quot;font-size: 20px;&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;Start task_UI&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;gradientColor=#b3b3b3;arcSize=50;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1294" y="120" width="170" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-6" target="kxtuZ_JRuEyIZq0aezZ3-12">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-6" value="&lt;font style=&quot;font-size: 17px;&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;I2C0,I2C1の&lt;br&gt;ミューテックスを取得&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="680" y="300" width="240" height="60" as="geometry" />
-        </mxCell>
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-8" target="kxtuZ_JRuEyIZq0aezZ3-18">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -36,34 +30,15 @@
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-1" target="kxtuZ_JRuEyIZq0aezZ3-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-12" target="kxtuZ_JRuEyIZq0aezZ3-13">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-12" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;カラーセンサの色をキューに&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="680" y="380" width="240" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-13" target="kxtuZ_JRuEyIZq0aezZ3-16">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-13" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;床ToFの結果をキューに&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="680" y="460" width="240" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-16" value="&lt;font style=&quot;font-size: 17px;&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;I2C0,I2C1の&lt;br&gt;ミューテックスを開放&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="680" y="540" width="240" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-18" target="kxtuZ_JRuEyIZq0aezZ3-6">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="300" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-18" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;ジャイロの値をキューに&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="680" y="220" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-24" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;rotation=-180;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="645" y="620" width="310" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-16" target="kxtuZ_JRuEyIZq0aezZ3-24">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-26" value="&lt;font style=&quot;font-size: 20px;&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;MainTaskに起こされる&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-26" value="&lt;font style=&quot;font-size: 20px;&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;MainTaskにResumeされる&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#f9f7ed;strokeColor=#36393d;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1249" y="200" width="260" height="60" as="geometry" />
         </mxCell>
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-28" target="kxtuZ_JRuEyIZq0aezZ3-2">
@@ -102,11 +77,14 @@
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-38" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;ディスプレイに表示&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1259" y="530" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-41" target="kxtuZ_JRuEyIZq0aezZ3-47">
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-41" target="kxtuZ_JRuEyIZq0aezZ3-66">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-41" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New&quot; face=&quot;Zen Kaku Gothic New&quot; style=&quot;font-size: 20px;&quot;&gt;LOP&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1306.5" y="610" width="145" height="80" as="geometry" />
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-116" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-41" target="kxtuZ_JRuEyIZq0aezZ3-115">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-41" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New&quot; face=&quot;Zen Kaku Gothic New&quot; style=&quot;font-size: 20px;&quot;&gt;ボタンが&lt;br&gt;押された&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1296.63" y="610" width="164.75" height="100" as="geometry" />
         </mxCell>
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-43" target="kxtuZ_JRuEyIZq0aezZ3-35">
           <mxGeometry relative="1" as="geometry" />
@@ -114,46 +92,106 @@
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-43" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;UIのミューテックスを取得&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1259" y="360" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-47" target="kxtuZ_JRuEyIZq0aezZ3-52">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-47" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;LOPの警告画面&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1560" y="620" width="170" height="60" as="geometry" />
-        </mxCell>
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-50" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Yes&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1469" y="620" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-52" target="kxtuZ_JRuEyIZq0aezZ3-56">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-52">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1380" y="740" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-52" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;終了が選択&lt;/span&gt;&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1568.5" y="700" width="153" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-54" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;rotation=-180;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1224" y="800" width="310" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-55" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;TaskUIを終了&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1560" y="880" width="170" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-56" target="kxtuZ_JRuEyIZq0aezZ3-55">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-56" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;終了をTaskMainに&lt;br&gt;伝える&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1560" y="800" width="170" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-41" target="kxtuZ_JRuEyIZq0aezZ3-54">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry x="1446" y="630" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-60" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;No&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1324" y="690" width="60" height="30" as="geometry" />
+          <mxGeometry x="1320" y="710" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="kxtuZ_JRuEyIZq0aezZ3-63" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;No&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1449" y="710" width="60" height="30" as="geometry" />
+          <mxGeometry x="1869" y="700" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-66" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;UIのミューテックスを開放&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1259" y="870" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-67" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;rotation=-180;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1224" y="950" width="310" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-66" target="kxtuZ_JRuEyIZq0aezZ3-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-75" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Yes&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1989" y="630" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-77" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;No&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1499" y="820" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-88" target="kxtuZ_JRuEyIZq0aezZ3-93">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-88" target="kxtuZ_JRuEyIZq0aezZ3-95">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-88" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;長押し&lt;/span&gt;&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1839" y="610" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-93" target="kxtuZ_JRuEyIZq0aezZ3-98">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-93" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;LOPの警告画面&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1834" y="730" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-95" target="kxtuZ_JRuEyIZq0aezZ3-96">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-95" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;UIのミューテックスを開放&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="2019" y="820" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-96" value="&lt;font style=&quot;font-size: 20px;&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;TaskUIをSuspend&lt;/font&gt;&lt;font style=&quot;font-size: 20px;&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;gradientColor=#b3b3b3;arcSize=50;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="2046.5" y="900" width="185" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-98" target="kxtuZ_JRuEyIZq0aezZ3-95">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-98">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1380" y="850.1428571428571" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-98" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 20px;&quot;&gt;終了を選択&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1844" y="810" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-102" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Yes&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1969" y="820" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-106" target="kxtuZ_JRuEyIZq0aezZ3-108">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-106" value="&lt;font style=&quot;font-size: 17px;&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;I2C0,I2C1の&lt;br&gt;バイナリセマフォを取得&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="680" y="300" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-108" target="kxtuZ_JRuEyIZq0aezZ3-110">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-108" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;カラーセンサの色をキューに&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="680" y="380" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-109" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-110" target="kxtuZ_JRuEyIZq0aezZ3-111">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-110" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;床ToFの結果をキューに&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="680" y="460" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-111" value="&lt;font style=&quot;font-size: 17px;&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Zen+Kaku+Gothic+New&quot; face=&quot;Zen Kaku Gothic New&quot;&gt;I2C0,I2C1の&lt;br&gt;バイナリセマフォを開放&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="680" y="540" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-112" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;rotation=-180;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="645" y="620" width="310" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-111" target="kxtuZ_JRuEyIZq0aezZ3-112">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-119" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-115" target="kxtuZ_JRuEyIZq0aezZ3-118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-115" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;TaskMainを削除&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1499" y="630" width="151" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-120" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="kxtuZ_JRuEyIZq0aezZ3-118" target="kxtuZ_JRuEyIZq0aezZ3-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kxtuZ_JRuEyIZq0aezZ3-118" value="&lt;font face=&quot;Zen Kaku Gothic New&quot;&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;I2Cのバイナリ&lt;br&gt;セマフォを開放&lt;br&gt;&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1670" y="630" width="150" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
