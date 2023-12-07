@@ -8,19 +8,19 @@
 #include "ColorSensor.h"
 
 TaskHandle_t taskUI, taskSensor, taskMain;
-SemaphoreHandle_t mutexGyro, mutexUI, mutexSerial, mutexI2C0, mutexI2C1;
-QueueHandle_t QueueGyro, queueColor;
+SemaphoreHandle_t mutexGyro, mutexUI, mutexSerial, SemaphoreI2C;
+QueueHandle_t queueGyro, queueColor;
 
 void xCreateRTOStools(){
   /* == Mutex ============================================================ */
   mutexGyro = xSemaphoreCreateMutex(); // ジャイロのミューテックス 意外と使わないかも?
   mutexUI = xSemaphoreCreateMutex(); // UIを司る権利
   mutexSerial = xSemaphoreCreateMutex(); // シリアルモニタとお話する権利
-  mutexI2C0 = xSemaphoreCreateMutex(); // I2C0をぶん回す権利
-  mutexI2C1 = xSemaphoreCreateMutex(); // I2C1をぶん回す権利
+  SemaphoreI2C = xSemaphoreCreateBinary(); // I2Cを使う権利
+  xSemaphoreGive(SemaphoreI2C); // The semaphore is created in the 'empty' state, meaning the semaphore must first be given using the xSemaphoreGive() API function
 
   /* == Queue ============================================================ */
   // 補正されたジャイロのデータ
-  QueueGyro = xQueueCreate(1, sizeof(filteredGyroXYZ));
+  queueGyro = xQueueCreate(1, sizeof(filteredGyroXYZ));
   queueColor = xQueueCreate(1, sizeof(Color));
 }

@@ -9,6 +9,6 @@ void task_Main(void *pvParameters) {
 
   while (1) {
     // ジャイロのデータを取得
-    xQueueReceive(QueueGyro, &gyroXYZ_1, 0);
+    xQueueReceive(queueGyro, &gyroXYZ_1, 0);
   }
 }

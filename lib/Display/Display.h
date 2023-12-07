@@ -6,6 +6,7 @@
 #include "../EEPROM/EEPROM_Address.h"
 
 #include <ILI9341_t3.h>
+#include <XPT2046_Touchscreen.h>
 #include <SPI.h>
 #include <SdFat.h>
 
@@ -27,6 +28,7 @@ enum PhotoError{
   FILE_OK,
   FILE_NOT_FOUND,
   FILE_SIZE_ERROR,
+  BMP_FILE_EXISTS,
 };
 
 class Display {
@@ -48,6 +50,26 @@ public:
   // EEPROMをねじ込まれる要員 あゝあわれ
   unsigned long clockDisplay = 60000000;
   uint8_t displayDirection = 3;
+  uint8_t existPhoto(String *filename, bool ifConvert); // ファイルが存在するかどうかを返す
+  // uint8_t existMovie(MOVIE *movie, bool ifConvert); // ファイルが存在するかどうかを返す
+
+  // タッチパネル
+  bool isTouch(){return ts.touched();}
+  TS_Point getPoint(){
+    if (ts.touched()){
+      int16_t x, y;
+      TS_Point p = ts.getPoint();
+
+      // 座標をディスプレイベースに変換
+      x = p.x - 337;
+      if (x < 0) x = 0;
+      y = p.y - 172;
+      if (y < 0) y = 0;
+      x = x *320 / 3629;
+      y = y * 240 / 3718;
+      return TS_Point(x, y, p.z);
+    } else return TS_Point(-1, -1, -1);
+  }
 private:
   #define TFT_DC  9
   #define TFT_CS 37
@@ -61,4 +83,8 @@ private:
   uint16_t read16(FsFile &f);
   uint32_t read32(FsFile &f);
   uint8_t getSize(String *filename, int *width, int *height);
+
+  // タッチパネル
+  #define CS_PIN  36
+  XPT2046_Touchscreen ts = XPT2046_Touchscreen(CS_PIN);
 };

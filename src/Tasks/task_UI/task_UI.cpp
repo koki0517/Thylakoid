@@ -11,6 +11,6 @@ void task_UI(void *pvParameters){
 
   while (1) {
     // ジャイロのデータを取得 あくまでもデータは消さない
-    xQueuePeek(QueueGyro, &gyroXYZ_3, 0);
+    xQueuePeek(queueGyro, &gyroXYZ_3, 0);
   }
 }

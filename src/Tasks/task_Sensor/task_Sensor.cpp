@@ -9,7 +9,7 @@ void task_Sensor(void *pvParameters) {
    */
 
   TickType_t xLastWakeTime;
-  BaseType_t hasGotGyroMutex, hasGotI2C0Mutex, hasGotI2C1Mutex;
+  BaseType_t hasGotGyroMutex, hasGotSemaphoreI2C;
   filteredGyroXYZ gyroXYZ_2;
   Color color;
 
@@ -20,13 +20,12 @@ void task_Sensor(void *pvParameters) {
     // xSemaphoreTake(mutexGyro, portMAX_DELAY );
     gyro.UpdateGyro(&gyroXYZ_2); // 更新‼
     // キューで送り付ける
-    xQueueOverwrite(QueueGyro, &gyroXYZ_2);
+    xQueueOverwrite(queueGyro, &gyroXYZ_2);
     // xSemaphoreGive(mutexGyro);
 
-    // I2C系のセンサを更新 ミューテックスをゲットでない場合もあり
-    hasGotI2C0Mutex = xSemaphoreTake(mutexI2C0, 0);
-    hasGotI2C1Mutex = xSemaphoreTake(mutexI2C1, 0);
-    if (hasGotI2C0Mutex == pdPASS && hasGotI2C1Mutex == pdPASS){
+    // I2C系のセンサを更新 セマフォをゲットでない場合もあり
+    hasGotSemaphoreI2C = xSemaphoreTake(SemaphoreI2C, 0);
+    if (hasGotSemaphoreI2C == pdPASS){
       // カラーセンサ
       color.LEFT = colorLeft.colorHSV();
       color.RIGHT = colorRight.colorHSV();
@@ -37,16 +36,7 @@ void task_Sensor(void *pvParameters) {
       }
       if (floortof.findProtrusion(ToF_FLOOR_RIGHT)) {
       }
-      xSemaphoreGive(mutexI2C0);
-      xSemaphoreGive(mutexI2C1);
-    } else {
-      // どちらか片方のミューテックスがゲットできなかった場合 もう片方を開放する
-      if (hasGotI2C0Mutex == pdPASS) {
-        xSemaphoreGive(mutexI2C0);
-      }
-      if (hasGotI2C1Mutex == pdPASS) {
-        xSemaphoreGive(mutexI2C1);
-      }
+      xSemaphoreGive(SemaphoreI2C);
     }
 
     vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(10)); // 制御周期調整弁君

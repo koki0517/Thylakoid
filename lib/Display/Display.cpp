@@ -26,6 +26,10 @@ bool Display::init(){
     delay(1000);
   }
   return true;
+
+  // タッチパネルの初期化
+  ts.begin();
+  ts.setRotation(1);
 }
 
 void Display::clear(uint16_t color){
@@ -291,6 +295,29 @@ uint64_t Display::getFrameCount(MOVIE *movie){
   uint64_t frameCount = txtFile.size() / (240*320*2);
   txtFile.close();
   return frameCount;
+}
+
+uint8_t Display::existPhoto(String *filename, bool ifConvert){
+  /* ファイルが存在するかどうかを返す */
+  String filePath = *filename + ".txt";
+  const char* _filePath = filePath.c_str();
+  FsFile bmpFile = sd.open(_filePath, FILE_READ);
+  if (bmpFile) {
+    bmpFile.close();
+    return FILE_OK;
+  }
+  filePath = *filename + ".bmp";
+  const char* __filePath = filePath.c_str();
+  bmpFile = sd.open(__filePath, FILE_READ);
+  if (bmpFile) {
+    if (ifConvert){
+      convertPhotoBMPtoRGB565(*filename, *filename, false, true);
+    }
+    bmpFile.close();
+    return FILE_OK;
+  }
+  bmpFile.close();
+  return FILE_NOT_FOUND;
 }
 
 /* ==================== Private ==================== */
