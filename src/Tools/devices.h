@@ -27,6 +27,8 @@ MOVIE KARAMERU_BASUKE,HATA,MATSUKEN;
 PHOTO Photo;
 LineSensorData lineData;
 
+uint8_t LOP_pin = 0; // ToDo: ピン番号を確認する
+
 bool initDevices(){
   // なんとなくbool型にしたけど別にvoidでいい希ガス
 
@@ -99,4 +101,6 @@ bool initDevices(){
       ::vTaskDelay(pdMS_TO_TICKS(1000));
     }
   }
+
+  pinMode(LOP_pin, arduino::INPUT_PULLUP);
 }

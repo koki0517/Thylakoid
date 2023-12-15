@@ -75,12 +75,12 @@ enum class numButtonLOP{
   LOP_FINISH
 };
 
-uint8_t identifyButton(TS_Point *tsPoint, Button *button[]){
+uint8_t identifyButton(TS_Point *tsPoint, Button button[]){
   uint8_t buttonSize = sizeof(button) / sizeof(button[0]);
   for (uint8_t i = 0; i < buttonSize; i++){
-    if (tsPoint->x >= button[i]->xStart && tsPoint->x < button[i]->xStart + button[i]->width - 1){ // X軸方向の判定
-      if (tsPoint->y > button[i]->yStart && tsPoint->y < button[i]->yStart + button[i]->height - 1){ // Y軸方向の判定
-        return button[i]->number;
+    if (tsPoint->x >= button[i].xStart && tsPoint->x < button[i].xStart + button[i].width - 1){ // X軸方向の判定
+      if (tsPoint->y > button[i].yStart && tsPoint->y < button[i].yStart + button[i].height - 1){ // Y軸方向の判定
+        return button[i].number;
       }
     }
   }
