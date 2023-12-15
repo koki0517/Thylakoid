@@ -31,3 +31,5 @@ private:
   uint8_t numToF = sizeof(XSHUT_FLOOR)/sizeof(uint8_t);
   uint16_t FloorProtrusion = 100;
 };
+
+// デフォルトの上限は255mm

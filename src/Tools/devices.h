@@ -23,7 +23,7 @@ LoadCell loadcell; // initはない
 LineSensor line;
 Display display;
 
-MOVIE Movie;
+MOVIE KARAMERU_BASUKE,HATA,MATSUKEN;
 PHOTO Photo;
 LineSensorData lineData;
 
@@ -45,6 +45,12 @@ bool initDevices(){
       Serial.println("I missed your display.");
       ::vTaskDelay(pdMS_TO_TICKS(1000));
     }
+    KARAMERU_BASUKE.FileName = "KARAMERU_BASUKE";
+    KARAMERU_BASUKE.numPhotos = display.getFrameCount(&KARAMERU_BASUKE);  
+    HATA.FileName = "HATASEN";
+    HATA.numPhotos = display.getFrameCount(&HATA);
+    MATSUKEN.FileName = "MATSUKEN";
+    MATSUKEN.numPhotos = display.getFrameCount(&MATSUKEN);
   }
 
   if (gyro.init(/*サンプリングレート*/1000) < 0){

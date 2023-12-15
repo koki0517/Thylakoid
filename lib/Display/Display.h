@@ -24,6 +24,7 @@ typedef struct{
   String TASK_BAR = "BAR";
 } PHOTO;
 
+// エラーコード
 enum PhotoError{
   FILE_OK,
   FILE_NOT_FOUND,
@@ -55,7 +56,7 @@ public:
 
   // タッチパネル
   bool isTouch(){return ts.touched();}
-  TS_Point getPoint(){
+  TS_Point getTSPoint(){
     if (ts.touched()){
       int16_t x, y;
       TS_Point p = ts.getPoint();
