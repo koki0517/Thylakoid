@@ -7,9 +7,6 @@
 #include <DFRobotDFPlayerMini.h>
 #include <SoftwareSerial.h>
 
-SoftwareSerial mySoftwareSerial(/*rx =*/30, /*tx =*/31); 
-DFRobotDFPlayerMini myDFPlayer;
-
 // エラーメッセージのファイル番号(仮)
 const uint8_t ERROR_DISPLAY = 0;
 const uint8_t ERROR_TOUCH = 1;
@@ -25,4 +22,6 @@ public:
   void play(uint8_t num); // 現状エラーを見つけてもシリアルに出力されるだけになっている いつか返り値でエラーメッセージ返したいね
   void volume(uint8_t volume);
 private:
+  DFRobotDFPlayerMini myDFPlayer = DFRobotDFPlayerMini();
+  SoftwareSerial mySoftwareSerial = SoftwareSerial(/*rx =*/30, /*tx =*/31);
 };

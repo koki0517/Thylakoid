@@ -6,6 +6,8 @@
 #include "./Tasks/task_UI/task_UI.h"
 #include "./Tasks/task_Sensor/task_Sensor.h"
 #include "./Tasks/task_Main/task_Main.h"
+#include "./Tools/rtosTools.h"
+#include "./Tools/devices.h"
 
 FLASHMEM __attribute__((noinline)) void setup() {
   Serial.begin(115200); // これから始めなきゃArduinoって感じがしないよね こだわり

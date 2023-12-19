@@ -1,11 +1,14 @@
 #pragma once
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
-
-#include "../../Tools/rtosTools.h"
-#include "../../Tools/devices.h"
+#include "semphr.h"
+#include "queue.h"
 
 #include "Functions/RUNALL.h"
-#include "Functions/Green.h"
+#include "Display.h"
+
+extern QueueHandle_t queueMainTaskStartOptions;
+extern Display display;
+extern PHOTO Photo;
 
 void task_Main(void *pvParameters);

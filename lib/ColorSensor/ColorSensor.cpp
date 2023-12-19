@@ -16,7 +16,7 @@ void ColorSensor::rgb(uint16_t* red,uint16_t* green,uint16_t* blue){
   *blue = b;
 }
 
-void ColorSensor::hsv(uint16_t *h,uint16_t *s,uint16_t *v){
+void ColorSensor::hsv(HSV *hsv){
   uint16_t r, g, b, c;
   color.getRawData(&r, &g, &b, &c);
   
@@ -26,33 +26,33 @@ void ColorSensor::hsv(uint16_t *h,uint16_t *s,uint16_t *v){
 
   // Hue
   if (maxRGB == minRGB){
-    *h = 0;
+    hsv->Hue = 0;
   } else if (maxRGB == r){
-    *h = 60 * ((g - b) / diff);
+    hsv->Hue = 60 * ((g - b) / diff);
   } else if (maxRGB == g){
-    *h = 60 * ((b - r) / diff);
+    hsv->Hue = 60 * ((b - r) / diff);
   } else if (maxRGB == b){
-    *h = 60 * ((r - g) / diff);
+    hsv->Hue = 60 * ((r - g) / diff);
   }
-  if (*h < 0) *h += 360;
+  if (hsv->Hue < 0) hsv->Hue += 360;
 
   // Sqturation
   if (maxRGB == 0){
-    *s = 0;
+    hsv->Saturation = 0;
   } else {
-    *s = diff / maxRGB * 100;
+    hsv->Saturation = diff / maxRGB * 100;
   }
 
   // Value(Brightness)
-  *v = maxRGB;
+  hsv->Value = maxRGB;
 }
 
 uint8_t ColorSensor::colorHSV(){
-  uint16_t h, s, v;
-  hsv(&h, &s, &v);
-  if (HueGreenMin < h && h < HueGreenMax && s > SqturationGreenMin && v > ValueGreenMin){
+  HSV tmphsv; 
+  hsv(&tmphsv);
+  if (HueGreenMin < tmphsv.Hue && tmphsv.Hue < HueGreenMax && tmphsv.Saturation > SqturationGreenMin && tmphsv.Value > ValueGreenMin){
     return GREEN;
-  } else if (HueRedMin < h && h < HueRedMax && s > SqturationRedMin && v > ValueRedMin){
+  } else if (HueRedMin < tmphsv.Hue && tmphsv.Hue < HueRedMax && tmphsv.Saturation > SqturationRedMin && tmphsv.Value > ValueRedMin){
     return RED;
   } else return OTHERS;
 }

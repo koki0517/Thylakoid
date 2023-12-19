@@ -15,6 +15,12 @@ enum Colors {
 };
 
 typedef struct {
+  uint16_t Hue;
+  uint16_t Saturation;
+  uint16_t Value;
+} HSV;
+
+typedef struct {
   uint8_t LEFT;
   uint8_t RIGHT;
 } Color;
@@ -24,7 +30,7 @@ public:
   ColorSensor(TwoWire *theWire = &Wire);
   bool init();
   void rgb(uint16_t* red,uint16_t* green,uint16_t* blue);
-  void hsv(uint16_t* h,uint16_t* s,uint16_t* v);
+  void hsv(HSV *hsv);
   void updateEEPROM();
   uint8_t colorHSV(); // HSVベースで判断
 private:
@@ -34,5 +40,5 @@ private:
   uint16_t HueGreenMin, HueGreenMax, SqturationGreenMin, ValueGreenMin;
 
   // 赤を赤たらしめるHSVの条件
-  uint16_t HueRedMin, HueRedMax, SqturationRedMin, SqturationRedMin, ValueRedMin;
+  uint16_t HueRedMin, HueRedMax, SqturationRedMin, SaturationRedMin, ValueRedMin;
 };

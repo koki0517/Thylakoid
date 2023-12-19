@@ -1,6 +1,6 @@
 #include "task_Sensor.h"
 
-void task_Sensor(void *pvParameters) {
+void task_Sensor(void*) {
   /* サブなタスク
    * 一定の制御周期を保証したいジャイロのためにある
    * ここで処理したデータはキューに入れる
@@ -9,7 +9,8 @@ void task_Sensor(void *pvParameters) {
    */
 
   TickType_t xLastWakeTime;
-  BaseType_t hasGotGyroMutex, hasGotSemaphoreI2C;
+  BaseType_t hasGotmutexI2C;
+  // BaseType_t hasGotmutexGyro;
   filteredGyroXYZ gyroXYZ_2;
   Color color;
 
@@ -24,8 +25,8 @@ void task_Sensor(void *pvParameters) {
     // xSemaphoreGive(mutexGyro);
 
     // I2C系のセンサを更新 セマフォをゲットでない場合もあり
-    hasGotSemaphoreI2C = xSemaphoreTake(SemaphoreI2C, 0);
-    if (hasGotSemaphoreI2C == pdPASS){
+    hasGotmutexI2C = xSemaphoreTake(mutexI2C, 0);
+    if (hasGotmutexI2C == pdPASS){
       // カラーセンサ
       color.LEFT = colorLeft.colorHSV();
       color.RIGHT = colorRight.colorHSV();
@@ -36,7 +37,7 @@ void task_Sensor(void *pvParameters) {
       }
       if (floortof.findProtrusion(ToF_FLOOR_RIGHT)) {
       }
-      xSemaphoreGive(SemaphoreI2C);
+      xSemaphoreGive(mutexI2C);
     }
 
     vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(10)); // 制御周期調整弁君

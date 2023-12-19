@@ -20,6 +20,7 @@ bool PiZero2W::init(){
 
 bool PiZero2W::stop(){
   Serial7.write(0x04); // ストップ信号
+  return true;
 }
 
 void PiZero2W::get_lidar(){

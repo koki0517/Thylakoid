@@ -25,9 +25,6 @@ Display display;
 
 MOVIE KARAMERU_BASUKE,HATA,MATSUKEN;
 PHOTO Photo;
-LineSensorData lineData;
-
-uint8_t LOP_pin = 0; // ToDo: ピン番号を確認する
 
 bool initDevices(){
   // なんとなくbool型にしたけど別にvoidでいい希ガス
@@ -47,6 +44,8 @@ bool initDevices(){
       Serial.println("I missed your display.");
       ::vTaskDelay(pdMS_TO_TICKS(1000));
     }
+    pinMode(display.LOP_pin, arduino::INPUT_PULLUP);
+
     KARAMERU_BASUKE.FileName = "KARAMERU_BASUKE";
     KARAMERU_BASUKE.numPhotos = display.getFrameCount(&KARAMERU_BASUKE);  
     HATA.FileName = "HATASEN";
@@ -102,5 +101,5 @@ bool initDevices(){
     }
   }
 
-  pinMode(LOP_pin, arduino::INPUT_PULLUP);
+  return true;
 }

@@ -2,13 +2,16 @@
 
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
+#include "semphr.h"
+#include "queue.h"
 
-enum whichColorSensor{
+#include "../../../Tools/eventList.h"
+extern QueueHandle_t queueEventsHappened;
+
+enum class whichColorSensor{
+  BOTH,
   LEFT,
   RIGHT
 };
 
-uint8_t foundGreen(uint8_t whichColorSensor){
-  // ここに緑が見つかったかどうかの処理を書く
-  return 0;
-}
+uint8_t foundGreen(whichColorSensor whichColor);

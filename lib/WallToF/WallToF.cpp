@@ -81,4 +81,5 @@ uint16_t WallToF::read(uint8_t sensor_number){
       return vl_mm;
     }
   }
+  return true;
 }

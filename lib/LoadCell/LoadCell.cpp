@@ -2,7 +2,7 @@
 
 LoadCell::LoadCell(){
   // もしかしたらいらんのかも
-  for (int8_t i=0; i < 3; i++){
+  for (int8_t i=0; i < 2; i++){
     pinMode(pins[i],arduino::INPUT);
   }
   updateEEPROM();
@@ -34,6 +34,7 @@ int16_t LoadCell::position_pressed(int *resultant_force,int *position){
   // 押された中心が2つのロードセルの間のとき
   *position = (left / (left + right)) * 1000 - 500;
   // ロードセルの外側を押されたとき、つまり外分の式が適用されるときにロードセルの値がどうなるかわからない
+  return 0;
 }
 
 void LoadCell::updateEEPROM(){

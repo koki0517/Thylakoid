@@ -2,12 +2,13 @@
 #include "arduino_freertos.h"
 #include "avr/pgmspace.h"
 
-#include "../../../Tools/rtosTools.h"
-#include "../../../Tools/devices.h"
+#include "Gyro.h"
+#include "LineSensor.h"
+#include "ColorSensor.h"
+#include "Green.h"
 
-void runAll(){
-  filteredGyroXYZ gyroXYZ_1;
-  vTaskResume(taskUI);
-  // ジャイロのデータを取得
-  xQueueReceive(queueGyro, &gyroXYZ_1, 0);
-}
+extern QueueHandle_t queueGyro, queueColor;
+extern TaskHandle_t taskUI;
+extern LineSensor line;
+
+void runAll(bool startTaskUI = true);

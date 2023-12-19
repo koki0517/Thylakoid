@@ -12,7 +12,7 @@ int LineSensor::read(uint8_t pin){
   return analogRead(pins[pin]);
 }
 
-int LineSensor::readAll(LineSensorData *data){
+void LineSensor::readAll(LineSensorData *data){
   data->refrector0 = analogRead(pins[0]);
   data->refrector1 = analogRead(pins[1]);
   data->refrector2 = analogRead(pins[2]);
@@ -22,7 +22,6 @@ int LineSensor::readAll(LineSensorData *data){
   data->refrector6 = analogRead(pins[6]);
   data->refrector7 = analogRead(pins[7]);
   data->refrector8 = analogRead(pins[8]);
-  return 0;
 }
 
 // // いつか必要になるかも

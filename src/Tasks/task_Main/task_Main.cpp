@@ -1,6 +1,6 @@
 #include "task_Main.h"
 
-void task_Main(void *pvParameters) {
+void task_Main(void*) {
   /*メインタスク
     制御周期短めで動いてほしい
   */
@@ -16,7 +16,7 @@ void task_Main(void *pvParameters) {
     switch (startOptions){
     case 1:
       /* 競技再開 */
-      runAll();
+      runAll(false);
       break;
     default:
       break;
