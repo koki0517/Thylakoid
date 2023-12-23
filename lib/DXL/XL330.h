@@ -15,7 +15,6 @@
 #include "../EEPROM/EEPROM_Address.h"
 #include <Dynamixel2Arduino.h>
 
-Dynamixel2Arduino dxl(Serial8, 33);
 using namespace ControlTableItem;
 
 /* 停止方法のオプション */
@@ -30,7 +29,7 @@ enum XL330ErrorCode{
   TIMEOUT,
   SPEED_SIZE_ERR,
   SPEED_UNSIGNED,
-  DEGREES_UNSIGNED,
+  DEGREES_ZERO,
   FAIL_COMMUNICATION,
   FAIL_COMMUNICATION_1,
   FAIL_COMMUNICATION_2,
@@ -68,7 +67,16 @@ public:
   uint8_t torqueOffAll();
 
   // とっとこ はしるよハム太郎～♪
-  bool drive(float RPM_LEFT, float RPM_RIGHT);
+  bool drive(float RPM_LEFT, float RPM_RIGHT){
+    if (abs(RPM_LEFT) > MAXRPM) return false;
+    if (abs(RPM_RIGHT) > MAXRPM) return false;
+    /* すべてのサーボを同じ速度でかき回すよ */
+    if (!dxl.setGoalVelocity(1, RPM_LEFT, UNIT_RPM)) return false;
+    if (!dxl.setGoalVelocity(2, -1*RPM_RIGHT, UNIT_RPM)) return false;
+    if (!dxl.setGoalVelocity(3, RPM_LEFT, UNIT_RPM)) return false;
+    if (!dxl.setGoalVelocity(4, -1*RPM_RIGHT, UNIT_RPM)) return false;
+    return true;
+  }
   uint8_t drive_for_degrees(float RPM_LEFT, float RPM_RIGHT, float degrees, uint8_t stop, unsigned int timeout_ms = 10000, bool wait = true);
 
   // すみっこ はしるよハム太郎～♪
@@ -80,7 +88,12 @@ public:
   bool changeMode(uint8_t ID, uint8_t mode);
   void updateEEPROM();
 private:
+  Dynamixel2Arduino dxl = Dynamixel2Arduino(Serial8, 33);
   const float MAXRPM = 110;
   uint8_t mode = VELOCITY;
   float Kp_position = 1.0, Ki_position = 0, Kd_position = 5;
+  enum direction{
+    forward,
+    back,
+  };
 };
